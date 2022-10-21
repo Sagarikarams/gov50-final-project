@@ -1,6 +1,6 @@
 ---
-title: "Responsiveness in immigration enforcement"
-author: "Angelo Dagonel (TF)"
+title: "Exploring USA Bureau of Labor Statistics"
+author: "Sagarika Ramesh"
 description: "County-level ICE compliance under constituent preferences and electoral dynamics"
 output:
   distill::distill_article:
