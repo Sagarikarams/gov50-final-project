@@ -1,7 +1,7 @@
 ---
 title: "Exploring USA Bureau of Labor Statistics"
 author: "Sagarika Ramesh"
-description: "County-level ICE compliance under constituent preferences and electoral dynamics"
+description: "Exploring how the inflation has affected different industries, unemployment and wage growth"
 output:
   distill::distill_article:
     self_contained: false
@@ -10,4 +10,4 @@ output:
 
 
 ## Project thoughts
-
+I want to explore USA Bureau of Labor Statistics (BLS) data. I will be analyzing different trends and patterns that exist in the data. The project shows how inflation is related to unemployment and wage growth. The affect of inflation differs among different industries and cities. It is important to know if inflation is higher than wage growth.   
