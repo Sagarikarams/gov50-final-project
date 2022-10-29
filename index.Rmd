@@ -10,4 +10,11 @@ output:
 
 
 ## Project thoughts
-I want to explore USA Bureau of Labor Statistics (BLS) data. I will be analyzing different trends and patterns that exist in the data. The project shows how inflation is related to unemployment and wage growth. The effect of inflation differs among different industries and cities. It is important to know if inflation is higher than wage growth.   
+I want to explore the USA Bureau of Labor Statistics (BLS) data. I will be analyzing different trends and patterns that exist in the data. Is inflation increasing faster than wage growth? If it is true, it would be difficult for lower-income households to meet their daily needs. The number of working hours, marital status, race, gender, labor productivity, and other factors could affect wage growth. We can also inspect how the COVID-19 pandemic has affected wage growth. The Consumer Price Index (CPI) is a statistical measure of change, over time, of the prices of goods and services in major expenditure groups(such as food, housing, apparel, transportation, and medical care)typically purchased by urban consumers. The Current Employment Statistics (CES) program produces detailed industry estimates of nonfarm employment, hours, and earnings of workers on the payroll. 
+My hypothesis is inflation is increasing faster than wage growth. The prices of most of the items have increased. We always hear people complain about how their spending power has decreased significantly. We can now check if it is true. 
+Dataset is obtained from  https://www.bls.gov/cpi/ and https://www.bls.gov/ces/
+My sample consists of revised seasonally adjusted Consumer Price Index and factors for All Urban Consumers during 2017-2021, average weekly earnings of all employees in different industries, and the cities in which they reside. My outcome variable measures wage growth. The monthly changes in the prices and wages are measured. This is used to calculate inflation and wage growth.  I will use a regression analysis to examine the relationship of these two variables. 
+A negative relationship between the two variables would provide support for my hypothesis, and a positive relationship between the two variables would disprove my hypothesis.
+
+  
+
