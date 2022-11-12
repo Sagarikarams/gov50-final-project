@@ -40,7 +40,7 @@ tail(food_cpi)
 ```{r}
 library(ggplot2)
 
-ggplot(food_cpi, aes(x = Date, y = Index)) + geom_line()
+ggplot(food_cpi, aes(x = Date, y = Index)) + geom_line()+labs(title = "CPI for All Urban Consumers: Food, over 10 years")
 ```
 ```{r}
 medical_services_cpi <- read.csv("data/CUSR0000SAM2.csv")
@@ -55,7 +55,7 @@ tail(medical_services_cpi)
 ```
 ```{r}
 
-ggplot(medical_services_cpi, aes(x = Date, y = Index)) + geom_line()
+ggplot(medical_services_cpi, aes(x = Date, y = Index)) + geom_line() + labs(title = "CPI for All Urban Consumers: Medical Care Services, over 10 years")
 ```
 
 ```{r}
@@ -71,7 +71,7 @@ tail(shelter_cpi)
 ```
 
 ```{r}
-ggplot(shelter_cpi, aes(x = Date, y = Index)) + geom_line()
+ggplot(shelter_cpi, aes(x = Date, y = Index)) + geom_line() + labs(title = "CPI for All Urban Consumers: Rent of Shelter, over 10 years")
 ```
 
 ```{r}
@@ -86,7 +86,7 @@ glimpse(gasoline_cpi)
 tail(gasoline_cpi)
 ```
 ```{r}
-ggplot(gasoline_cpi, aes(x = Date, y = Index)) + geom_line()
+ggplot(gasoline_cpi, aes(x = Date, y = Index)) + geom_line() +labs(title = "CPI for All Urban Consumers: Gasoline, over 10 years")
 ```
 
 
@@ -102,7 +102,7 @@ glimpse(totalwage_weekly)
 tail(totalwage_weekly)
 ```
 ```{r}
-ggplot(totalwage_weekly, aes(x = Date, y = Index)) + geom_line()
+ggplot(totalwage_weekly, aes(x = Date, y = Index)) + geom_line() + labs(title = "Median weekly earnings over 10 years for ages 16 and above")
 ```
 
 ```{r}
@@ -117,7 +117,7 @@ glimpse(menwage_weekly)
 tail(menwage_weekly)
 ```
 ```{r}
-ggplot(menwage_weekly, aes(x = Date, y = Index)) + geom_line()
+ggplot(menwage_weekly, aes(x = Date, y = Index)) + geom_line()+ labs(title = "Median weekly earnings over 10 years for men of ages 16 and above")
 ```
 
 ```{r}
@@ -133,6 +133,6 @@ tail(womenwage_weekly)
 ```
 
 ```{r}
-ggplot(womenwage_weekly, aes(x = Date, y = Index)) + geom_line()
+ggplot(womenwage_weekly, aes(x = Date, y = Index)) + geom_line() + labs(title = "Median weekly earnings over 10 years for women of ages 16 and above")
 ```
 
