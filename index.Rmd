@@ -88,13 +88,7 @@ tail(gasoline_cpi)
 ```{r}
 ggplot(gasoline_cpi, aes(x = Date, y = Index)) + geom_line()
 ```
-```{r}
- #wage <- bls_api(c("LES1252881500Q","LES1252881800","LES1252882700"), startyear = 2013, endyear = 2022)
-#glimpse(wage)
-#head(wage)
 
-
-```
 
 ```{r}
 totalwage_weekly <- read.csv("data/LES1252881500Q.csv")
