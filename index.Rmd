@@ -20,84 +20,125 @@ Hence a negative relationship between the two variables would provide support fo
 library(blscrapeR)
 library(dplyr)
 library(tidyverse)
- wage <- bls_api(c("LES1252881500","LES1252881800","LES1252882700"), startyear = 2013, endyear = 2022)
-glimpse(wage)
-head(wage)
 ```
-```{r}
-wage <- wage|>
-        select(-c(periodName, latest, footnotes))
-head(wage)
-```
+
 
 ```{r}
-library(blscrapeR)
-library(blsAPI)
-library(dplyr)
-library(rjson)
-library(tidyverse)
+library(lubridate)
 
-payload<-list('seriesid'= c("CUSR0000SAF1", "CUSR0000SAS2RS", "CUSR0000SAM2", "CUSR0000SETB01"), 'startyear' = 2013, 'endyear' = 2022)
-response <- blsAPI(payload, 2)
-json <-fromJSON(response)
+food_cpi <- read.csv("data/CUSR0000SAF11.csv")
+food_cpi$Date <- ymd(food_cpi$DATE) 
+food_cpi <- food_cpi|>
+            rename("Index" = CUSR0000SAF11)|>
+            select(Date, Index)
 
-CPI <- data.frame(year=character(),
-                 period=character(), 
-                 periodName=character(),
-                 value=character(),
-                 seriesID=character(), 
-                 stringsAsFactors=FALSE)
-i <- 0
-for(d in json$Results$series[[1]]$data){
-  i <- i + 1
-  df[i,] <- unlist(d)
-}
-
-glimpse(CPI)
-head(CPI)
+glimpse(food_cpi)
+tail(food_cpi)
 ```
 
-```{r}
-CPI <- CPI |>
-        mutate(month = case_when(period == "M12" ~ 12 , period == "M11" ~ 11 ,period == "M10" ~ 10, period == "M09" ~ 09, period == "M08" ~ 08,period == "M07" ~ 07, period == "M06" ~ 06, period == "M05" ~ 05, period == "M04" ~ 04, period == "M03" ~ 03, period == "M02" ~ 02, period == "M01" ~ 01))
-
-head(CPI)
-```
-  
-  
-```{r}
-CPI <- CPI|>
-        select(c(year, month, value, seriesID))
-        
-head(CPI)
-```
-```{r}
-library("zoo")
-CPI$Date <- as.yearmon(paste(CPI$year, CPI$month), "%Y %m")
-CPI <- CPI|>
-        select("year","Date","value", "seriesID")
-
-head(CPI)
-```
-  
-```{r}
-food_cpi <- CPI |>
-            filter(seriesID == "CUSR0000SAF1")
-
-medical_services_cpi <-CPI |>
-      filter(seriesID == "CUSR0000SAM2")
-
-shelter <- CPI |>
-          filter(seriesID == "CUSR0000SAS2RS")
-
-gasoline <- CPI |>
-          filter(seriesID == "CUSR0000SETB01")
-
-```
 
 ```{r}
 library(ggplot2)
 
-ggplot(food_cpi, aes(x = year, y = value)) + geom_col()
+ggplot(food_cpi, aes(x = Date, y = Index)) + geom_line()
+```
+```{r}
+medical_services_cpi <- read.csv("data/CUSR0000SAM2.csv")
+
+medical_services_cpi$Date <- ymd(medical_services_cpi$DATE) 
+medical_services_cpi <- medical_services_cpi|>
+            rename("Index" = CUSR0000SAM2)|>
+            select(Date, Index)
+
+glimpse(medical_services_cpi)
+tail(medical_services_cpi)
+```
+```{r}
+
+ggplot(medical_services_cpi, aes(x = Date, y = Index)) + geom_line()
+```
+
+```{r}
+shelter_cpi <- read.csv("data/CUSR0000SAS2RS.csv")
+
+shelter_cpi$Date <- ymd(shelter_cpi$DATE) 
+shelter_cpi <- shelter_cpi|>
+            rename("Index" = CUSR0000SAS2RS)|>
+            select(Date, Index)
+
+glimpse(shelter_cpi)
+tail(shelter_cpi)
+```
+
+```{r}
+ggplot(shelter_cpi, aes(x = Date, y = Index)) + geom_line()
+```
+
+```{r}
+gasoline_cpi <- read.csv("data/CUSR0000SETB01.csv")
+
+gasoline_cpi$Date <- ymd(gasoline_cpi$DATE) 
+gasoline_cpi <- gasoline_cpi|>
+            rename("Index" = CUSR0000SETB01)|>
+            select(Date, Index)
+
+glimpse(gasoline_cpi)
+tail(gasoline_cpi)
+```
+```{r}
+ggplot(gasoline_cpi, aes(x = Date, y = Index)) + geom_line()
+```
+```{r}
+ #wage <- bls_api(c("LES1252881500Q","LES1252881800","LES1252882700"), startyear = 2013, endyear = 2022)
+#glimpse(wage)
+#head(wage)
+
+
+```
+
+```{r}
+totalwage_weekly <- read.csv("data/LES1252881500Q.csv")
+
+totalwage_weekly$Date <- ymd(totalwage_weekly$DATE) 
+totalwage_weekly <- totalwage_weekly|>
+            rename("Index" = LES1252881500Q)|>
+            select(Date, Index)
+
+glimpse(totalwage_weekly)
+tail(totalwage_weekly)
+```
+```{r}
+ggplot(totalwage_weekly, aes(x = Date, y = Index)) + geom_line()
+```
+
+```{r}
+menwage_weekly <- read.csv("data/LES1252881800Q.csv")
+
+menwage_weekly$Date <- ymd(menwage_weekly$DATE) 
+menwage_weekly <- menwage_weekly|>
+            rename("Index" = LES1252881800Q)|>
+            select(Date, Index)
+
+glimpse(menwage_weekly)
+tail(menwage_weekly)
+```
+```{r}
+ggplot(menwage_weekly, aes(x = Date, y = Index)) + geom_line()
+```
+
+```{r}
+womenwage_weekly <- read.csv("data/LES1252882700Q.csv")
+
+womenwage_weekly$Date <- ymd(womenwage_weekly$DATE) 
+womenwage_weekly <- womenwage_weekly|>
+            rename("Index" = LES1252882700Q)|>
+            select(Date, Index)
+
+glimpse(womenwage_weekly)
+tail(womenwage_weekly)
+```
+
+```{r}
+ggplot(womenwage_weekly, aes(x = Date, y = Index)) + geom_line()
 ```
 
