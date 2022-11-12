@@ -16,5 +16,88 @@ Dataset is obtained from  https://www.bls.gov/cpi/ and https://www.bls.gov/ces/
 My sample consists of revised seasonally adjusted Consumer Price Index and factors for All Urban Consumers during 2017-2021, average weekly earnings of all employees in different industries, and the cities in which they reside. My outcome variable measures wage growth. The monthly changes in the prices and wages are measured. This is used to calculate inflation and wage growth. I will use a regression analysis to examine the relationship between these two variables. A negative relationship between the two variables shows that they are not positively correlated, which means wages are not increasing with the increase in inflation.
 Hence a negative relationship between the two variables would provide support for my hypothesis, and a positive relationship between the two variables would disprove my hypothesis.
 
+```{r}
+library(blscrapeR)
+library(dplyr)
+library(tidyverse)
+ wage <- bls_api(c("LES1252881500","LES1252881800","LES1252882700"), startyear = 2013, endyear = 2022)
+glimpse(wage)
+head(wage)
+```
+```{r}
+wage <- wage|>
+        select(-c(periodName, latest, footnotes))
+head(wage)
+```
+
+```{r}
+library(blscrapeR)
+library(blsAPI)
+library(dplyr)
+library(rjson)
+library(tidyverse)
+
+payload<-list('seriesid'= c("CUSR0000SAF1", "CUSR0000SAS2RS", "CUSR0000SAM2", "CUSR0000SETB01"), 'startyear' = 2013, 'endyear' = 2022)
+response <- blsAPI(payload, 2)
+json <-fromJSON(response)
+
+CPI <- data.frame(year=character(),
+                 period=character(), 
+                 periodName=character(),
+                 value=character(),
+                 seriesID=character(), 
+                 stringsAsFactors=FALSE)
+i <- 0
+for(d in json$Results$series[[1]]$data){
+  i <- i + 1
+  df[i,] <- unlist(d)
+}
+
+glimpse(CPI)
+head(CPI)
+```
+
+```{r}
+CPI <- CPI |>
+        mutate(month = case_when(period == "M12" ~ 12 , period == "M11" ~ 11 ,period == "M10" ~ 10, period == "M09" ~ 09, period == "M08" ~ 08,period == "M07" ~ 07, period == "M06" ~ 06, period == "M05" ~ 05, period == "M04" ~ 04, period == "M03" ~ 03, period == "M02" ~ 02, period == "M01" ~ 01))
+
+head(CPI)
+```
   
+  
+```{r}
+CPI <- CPI|>
+        select(c(year, month, value, seriesID))
+        
+head(CPI)
+```
+```{r}
+library("zoo")
+CPI$Date <- as.yearmon(paste(CPI$year, CPI$month), "%Y %m")
+CPI <- CPI|>
+        select("year","Date","value", "seriesID")
+
+head(CPI)
+```
+  
+```{r}
+food_cpi <- CPI |>
+            filter(seriesID == "CUSR0000SAF1")
+
+medical_services_cpi <-CPI |>
+      filter(seriesID == "CUSR0000SAM2")
+
+shelter <- CPI |>
+          filter(seriesID == "CUSR0000SAS2RS")
+
+gasoline <- CPI |>
+          filter(seriesID == "CUSR0000SETB01")
+
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(food_cpi, aes(x = year, y = value)) + geom_col()
+```
 
