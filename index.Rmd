@@ -158,4 +158,24 @@ labs(
                      limits = c(690, 1200),
                  breaks = c(600, 700, 800, 900, 1000, 1100, 1200))
 ```
+```{r}
+perc_chng_gasoline <- gasoline_cpi
+perc_chng_gasoline$year <- year(gasoline_cpi$Date)
+perc_chng_gasoline$month <- month(gasoline_cpi$Date)
+
+perc_chng_gasoline <- perc_chng_gasoline|>
+  group_by(year)|>
+  filter(month == 1)|>
+  select(year, Index)
+
+perc_chng_gasoline
+                      
+```
+
+```{r}
+perc_chng_gasoline$perc_inc <- (perc_chng_gasoline$Index - lag(perc_chng_gasoline$Index))/ lag(perc_chng_gasoline$Index)*100
+
+perc_chng_gasoline
+```
+
 
