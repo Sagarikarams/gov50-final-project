@@ -180,8 +180,9 @@ perc_chng_gasoline
 knitr::kable(perc_chng_gasoline, col.names = c("Year", "CPI", "Percent_Change_CPI"))
 ```
 ```{r}
-ggplot(perc_chng_gasoline, aes(x = year, y = perc_inc)) + geom_line() + labs(x = "Year", y = "Percent Change in CPI", title = "12-month percent change in CPI for gasoline, Jan. 2013 - Jan. 2022")
+perc_chng_gasoline$year <- as.Date(as.character(perc_chng_gasoline$year), format = "%Y")
+ggplot(perc_chng_gasoline, aes(x = year, y = perc_inc)) + geom_line() + labs(x = "Year", y = "Percent Change in CPI", title = "12-month percent change in CPI for gasoline, Jan. 2013 - Jan. 2022") 
 ```
 
-In the above table we have calculated 12-month percent change in CPI for gasoline. The line plot for 
+In the above table I have calculated 12-month percent change in CPI for gasoline. The line plot is also obtained.
 

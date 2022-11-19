@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/CUSR0000SAF11.csv","data/CUSR0000SAM2.csv","data/CUSR0000SAS2RS.csv","data/CUSR0000SETB01.csv","data/LES1252881500Q.csv","data/LES1252881800Q.csv","data/LES1252882700Q.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-11-1.png","index_files/figure-html5/unnamed-chunk-13-1.png","index_files/figure-html5/unnamed-chunk-15-1.png","index_files/figure-html5/unnamed-chunk-17-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/CUSR0000SAF11.csv","data/CUSR0000SAM2.csv","data/CUSR0000SAS2RS.csv","data/CUSR0000SETB01.csv","data/LES1252881500Q.csv","data/LES1252881800Q.csv","data/LES1252882700Q.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-11-1.png","index_files/figure-html5/unnamed-chunk-13-1.png","index_files/figure-html5/unnamed-chunk-15-1.png","index_files/figure-html5/unnamed-chunk-17-1.png","index_files/figure-html5/unnamed-chunk-20-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1824,7 +1824,128 @@ $ women_wk_wage &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, 7…</c
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>perc_chng_gasoline</span> <span class='op'>&lt;-</span> <span class='va'>gasoline_cpi</span></span>
+<span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='va'>gasoline_cpi</span><span class='op'>$</span><span class='va'>Date</span><span class='op'>)</span></span>
+<span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>month</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/month.html'>month</a></span><span class='op'>(</span><span class='va'>gasoline_cpi</span><span class='op'>$</span><span class='va'>Date</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>perc_chng_gasoline</span> <span class='op'>&lt;-</span> <span class='va'>perc_chng_gasoline</span><span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>month</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>Index</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>perc_chng_gasoline</span></span></code></pre>
+</div>
+<pre><code># A tibble: 10 × 2
+# Groups:   year [10]
+    year Index
+   &lt;dbl&gt; &lt;dbl&gt;
+ 1  2013  307.
+ 2  2014  308.
+ 3  2015  200.
+ 4  2016  181.
+ 5  2017  218.
+ 6  2018  236.
+ 7  2019  211.
+ 8  2020  237.
+ 9  2021  216.
+10  2022  302.</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>perc_inc</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>Index</span> <span class='op'>-</span> <span class='fu'>lag</span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>Index</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span> <span class='fu'>lag</span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>Index</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span></span>
+<span></span>
+<span><span class='va'>perc_chng_gasoline</span></span></code></pre>
+</div>
+<pre><code># A tibble: 10 × 3
+# Groups:   year [10]
+    year Index perc_inc
+   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+ 1  2013  307.   NA    
+ 2  2014  308.    0.543
+ 3  2015  200.  -35.3  
+ 4  2016  181.   -9.07 
+ 5  2017  218.   20.1  
+ 6  2018  236.    8.15 
+ 7  2019  211.  -10.6  
+ 8  2020  237.   12.3  
+ 9  2021  216.   -8.90 
+10  2022  302.   40.0  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span>, col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Year"</span>, <span class='st'>"CPI"</span>, <span class='st'>"Percent_Change_CPI"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">CPI</th>
+<th style="text-align: right;">Percent_Change_CPI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">306.734</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">308.400</td>
+<td style="text-align: right;">0.5431416</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">199.553</td>
+<td style="text-align: right;">-35.2940986</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">181.445</td>
+<td style="text-align: right;">-9.0742810</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">217.892</td>
+<td style="text-align: right;">20.0870787</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">235.641</td>
+<td style="text-align: right;">8.1457786</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">210.752</td>
+<td style="text-align: right;">-10.5622536</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2020</td>
+<td style="text-align: right;">236.591</td>
+<td style="text-align: right;">12.2603819</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">215.529</td>
+<td style="text-align: right;">-8.9022828</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">301.791</td>
+<td style="text-align: right;">40.0233843</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"%Y"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>, y <span class='op'>=</span> <span class='va'>perc_inc</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Year"</span>, y <span class='op'>=</span> <span class='st'>"Percent Change in CPI"</span>, title <span class='op'>=</span> <span class='st'>"12-month percent change in CPI for gasoline, Jan. 2013 - Jan. 2022"</span><span class='op'>)</span> </span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-20-1.png" width="624" /></p>
+</div>
+<p>In the above table I have calculated 12-month percent change in CPI for gasoline. The line plot is also obtained.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
