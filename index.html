@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/CUSR0000SAF11.csv","data/CUSR0000SAM2.csv","data/CUSR0000SAS2RS.csv","data/CUSR0000SETB01.csv","data/LES1252881500Q.csv","data/LES1252881800Q.csv","data/LES1252882700Q.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-11-1.png","index_files/figure-html5/unnamed-chunk-13-1.png","index_files/figure-html5/unnamed-chunk-15-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/CUSR0000SAF11.csv","data/CUSR0000SAM2.csv","data/CUSR0000SAS2RS.csv","data/CUSR0000SETB01.csv","data/LES1252881500Q.csv","data/LES1252881800Q.csv","data/LES1252882700Q.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-11-1.png","index_files/figure-html5/unnamed-chunk-13-1.png","index_files/figure-html5/unnamed-chunk-15-1.png","index_files/figure-html5/unnamed-chunk-17-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1518,7 +1518,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h2 id="project-thoughts">Project thoughts</h2>
-<p>I want to explore the USA Bureau of Labor Statistics (BLS) data. I will be analyzing different trends and patterns that exist in the data. Is inflation increasing faster than wage growth? If it is true, it would be difficult for lower-income households to meet their daily needs. The number of working hours, marital status, race, gender, labor productivity, and other factors could affect wage growth. We can also inspect how the COVID-19 pandemic has affected wage growth. The Consumer Price Index (CPI) is a statistical measure of change, over time, of the prices of goods and services in major expenditure groups(such as food, housing, apparel, transportation, and medical care)typically purchased by urban consumers. The Current Employment Statistics (CES) program produces detailed industry estimates of nonfarm employment, hours, and earnings of workers on the payroll.
+<p>I want to explore the USA Bureau of Labor Statistics (BLS) data. I will be analyzing different trends and patterns that exist in the data. Is inflation increasing faster than wage growth? If it is true, it would be difficult for lower-income households to meet their daily needs. The number of working hours, marital status, race, gender, labor productivity, and other factors could affect wage growth. We can also inspect how the COVID-19 pandemic has affected wage growth. The Consumer Price Index (CPI) is a statistical measure of change, over time, of the prices of goods and services in major expenditure groups(such as food, housing, apparel, transportation, and medical care)typically purchased by urban consumers. The Current Employment Statistics (CES) program produces detailed industry estimates of non-farm employment, hours, and earnings of workers on the payroll.
 My hypothesis is inflation is increasing faster than wage growth. The prices of most of the items have increased. We always hear people complain about how their spending power has decreased significantly. We can now check if it is true.
 Dataset is obtained from <a href="https://www.bls.gov/cpi/" class="uri">https://www.bls.gov/cpi/</a> and <a href="https://www.bls.gov/ces/" class="uri">https://www.bls.gov/ces/</a>
 My sample consists of revised seasonally adjusted Consumer Price Index and factors for All Urban Consumers during 2017-2021, average weekly earnings of all employees in different industries, and the cities in which they reside. My outcome variable measures wage growth. The monthly changes in the prices and wages are measured. This is used to calculate inflation and wage growth. I will use a regression analysis to examine the relationship between these two variables. A negative relationship between the two variables shows that they are not positively correlated, which means wages are not increasing with the increase in inflation.
@@ -1667,29 +1667,29 @@ $ Index &lt;dbl&gt; 306.734, 329.253, 310.442, 295.206, 293.131, 298.112, …</c
 <span></span>
 <span><span class='va'>totalwage_weekly</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>totalwage_weekly</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
 <span><span class='va'>totalwage_weekly</span> <span class='op'>&lt;-</span> <span class='va'>totalwage_weekly</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"Index"</span> <span class='op'>=</span> <span class='va'>LES1252881500Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>Index</span><span class='op'>)</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"tt_wk_wage"</span> <span class='op'>=</span> <span class='va'>LES1252881500Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>tt_wk_wage</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>totalwage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Rows: 39
 Columns: 2
-$ Date  &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01, 2014-…
-$ Index &lt;int&gt; 768, 777, 779, 782, 790, 781, 798, 795, 802, 803, 809,…</code></pre>
+$ Date       &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01, …
+$ tt_wk_wage &lt;int&gt; 768, 777, 779, 782, 790, 781, 798, 795, 802, 803,…</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>totalwage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date Index
-34 2021-04-01   996
-35 2021-07-01  1003
-36 2021-10-01  1008
-37 2022-01-01  1030
-38 2022-04-01  1045
-39 2022-07-01  1068</code></pre>
+<pre><code>         Date tt_wk_wage
+34 2021-04-01        996
+35 2021-07-01       1003
+36 2021-10-01       1008
+37 2022-01-01       1030
+38 2022-04-01       1045
+39 2022-07-01       1068</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>totalwage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>Index</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for ages 16 and above"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>totalwage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>tt_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Date"</span>, y <span class='op'>=</span> <span class='st'>"Dollars"</span>,title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for ages 16 and above"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
 </div>
@@ -1699,29 +1699,29 @@ $ Index &lt;int&gt; 768, 777, 779, 782, 790, 781, 798, 795, 802, 803, 809,…</c
 <span></span>
 <span><span class='va'>menwage_weekly</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
 <span><span class='va'>menwage_weekly</span> <span class='op'>&lt;-</span> <span class='va'>menwage_weekly</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"Index"</span> <span class='op'>=</span> <span class='va'>LES1252881800Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>Index</span><span class='op'>)</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"men_wk_wage"</span> <span class='op'>=</span> <span class='va'>LES1252881800Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>men_wk_wage</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Rows: 39
 Columns: 2
-$ Date  &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01, 2014-…
-$ Index &lt;int&gt; 860, 863, 855, 865, 865, 860, 878, 878, 886, 890, 896,…</code></pre>
+$ Date        &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01,…
+$ men_wk_wage &lt;int&gt; 860, 863, 855, 865, 865, 860, 878, 878, 886, 890…</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date Index
-34 2021-04-01  1098
-35 2021-07-01  1108
-36 2021-10-01  1100
-37 2022-01-01  1118
-38 2022-04-01  1148
-39 2022-07-01  1166</code></pre>
+<pre><code>         Date men_wk_wage
+34 2021-04-01        1098
+35 2021-07-01        1108
+36 2021-10-01        1100
+37 2022-01-01        1118
+38 2022-04-01        1148
+39 2022-07-01        1166</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>Index</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for men of ages 16 and above"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>men_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Date"</span>, y <span class='op'>=</span> <span class='st'>"Dollars"</span>, title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for men of ages 16 and above"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
 </div>
@@ -1731,33 +1731,100 @@ $ Index &lt;int&gt; 860, 863, 855, 865, 865, 860, 878, 878, 886, 890, 896,…</c
 <span></span>
 <span><span class='va'>womenwage_weekly</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
 <span><span class='va'>womenwage_weekly</span> <span class='op'>&lt;-</span> <span class='va'>womenwage_weekly</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"Index"</span> <span class='op'>=</span> <span class='va'>LES1252882700Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>Index</span><span class='op'>)</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"women_wk_wage"</span> <span class='op'>=</span> <span class='va'>LES1252882700Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>women_wk_wage</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Rows: 39
 Columns: 2
-$ Date  &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01, 2014-…
-$ Index &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, 725, 727,…</code></pre>
+$ Date          &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-0…
+$ women_wk_wage &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, 7…</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date Index
-34 2021-04-01   905
-35 2021-07-01   915
-36 2021-10-01   928
-37 2022-01-01   937
-38 2022-04-01   949
-39 2022-07-01   968</code></pre>
+<pre><code>         Date women_wk_wage
+34 2021-04-01           905
+35 2021-07-01           915
+36 2021-10-01           928
+37 2022-01-01           937
+38 2022-04-01           949
+39 2022-07-01           968</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>Index</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for women of ages 16 and above"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>women_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Date"</span>, y <span class='op'>=</span> <span class='st'>"Dollars"</span>, title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for women of ages 16 and above"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wages</span> <span class='op'>&lt;-</span> <span class='va'>totalwage_weekly</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>wages</span> <span class='op'>&lt;-</span> <span class='va'>wages</span> <span class='op'>|&gt;</span></span>
+<span>        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
+<span><span class='va'>wages</span></span></code></pre>
+</div>
+<pre><code>         Date tt_wk_wage men_wk_wage women_wk_wage
+1  2013-01-01        768         860           699
+2  2013-04-01        777         863           706
+3  2013-07-01        779         855           705
+4  2013-10-01        782         865           712
+5  2014-01-01        790         865           716
+6  2014-04-01        781         860           715
+7  2014-07-01        798         878           721
+8  2014-10-01        795         878           724
+9  2015-01-01        802         886           725
+10 2015-04-01        803         890           725
+11 2015-07-01        809         896           727
+12 2015-10-01        821         904           729
+13 2016-01-01        823         904           744
+14 2016-04-01        828         913           746
+15 2016-07-01        834         918           748
+16 2016-10-01        845         924           759
+17 2017-01-01        858         941           760
+18 2017-04-01        863         937           782
+19 2017-07-01        864         944           769
+20 2017-10-01        854         943           770
+21 2018-01-01        875         956           778
+22 2018-04-01        881         963           783
+23 2018-07-01        891         980           796
+24 2018-10-01        897         991           795
+25 2019-01-01        899         994           803
+26 2019-04-01        913        1004           818
+27 2019-07-01        922        1010           825
+28 2019-10-01        934        1020           842
+29 2020-01-01        951        1056           853
+30 2020-04-01       1008        1091           919
+31 2020-07-01        996        1112           901
+32 2020-10-01        982        1069           894
+33 2021-01-01        983        1079           897
+34 2021-04-01        996        1098           905
+35 2021-07-01       1003        1108           915
+36 2021-10-01       1008        1100           928
+37 2022-01-01       1030        1118           937
+38 2022-04-01       1045        1148           949
+39 2022-07-01       1068        1166           968</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>wages</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>men_wk_wage</span>, y <span class='op'>=</span> <span class='va'>women_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"steelblue1"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>  x <span class='op'>=</span> <span class='st'>"Median weekly earnings by Men"</span>,</span>
+<span>  y <span class='op'>=</span> <span class='st'>"Median weekly earnings by Women"</span>,</span>
+<span>  title <span class='op'>=</span> <span class='st'>"Median weekly earnings by Men vs Women"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/dollar_format.html'>dollar</a></span>, </span>
+<span>                        limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>690</span>, <span class='fl'>1200</span><span class='op'>)</span>,</span>
+<span>                 breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>600</span>, <span class='fl'>700</span>, <span class='fl'>800</span>, <span class='fl'>900</span>, <span class='fl'>1000</span>, <span class='fl'>1100</span>, <span class='fl'>1200</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/dollar_format.html'>dollar</a></span>, </span>
+<span>                     limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>690</span>, <span class='fl'>1200</span><span class='op'>)</span>,</span>
+<span>                 breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>600</span>, <span class='fl'>700</span>, <span class='fl'>800</span>, <span class='fl'>900</span>, <span class='fl'>1000</span>, <span class='fl'>1100</span>, <span class='fl'>1200</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
+</div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
