@@ -414,6 +414,7 @@ tidy(wages.multreg) |> knitr::kable(digits = 3)
 
 ```{r}
 modelsummary::modelsummary(wages.multreg, gof_map = c("nobs", "r.squared", "adj.r.squared"))
+
 ```
 
 
