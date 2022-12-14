@@ -20,75 +20,194 @@ Hence a negative relationship between the two variables would provide support fo
 library(blscrapeR)
 library(dplyr)
 library(tidyverse)
-```
-
-
-```{r}
+library(infer)
+library(broom)
 library(lubridate)
-
-food_cpi <- read.csv("data/CUSR0000SAF11.csv")
-food_cpi$Date <- ymd(food_cpi$DATE) 
-food_cpi <- food_cpi|>
-            rename("Index" = CUSR0000SAF11)|>
-            select(Date, Index)
-
-glimpse(food_cpi)
-tail(food_cpi)
-```
-
-
-```{r}
 library(ggplot2)
-
-ggplot(food_cpi, aes(x = Date, y = Index)) + geom_line()+labs(title = "CPI for All Urban Consumers: Food, over 10 years")
-```
-```{r}
-medical_services_cpi <- read.csv("data/CUSR0000SAM2.csv")
-
-medical_services_cpi$Date <- ymd(medical_services_cpi$DATE) 
-medical_services_cpi <- medical_services_cpi|>
-            rename("Index" = CUSR0000SAM2)|>
-            select(Date, Index)
-
-glimpse(medical_services_cpi)
-tail(medical_services_cpi)
-```
-```{r}
-
-ggplot(medical_services_cpi, aes(x = Date, y = Index)) + geom_line() + labs(title = "CPI for All Urban Consumers: Medical Care Services, over 10 years")
 ```
 
 ```{r}
-shelter_cpi <- read.csv("data/CUSR0000SAS2RS.csv")
+cpi_all_items = read.csv("data/CPIAUCSL.csv")
 
-shelter_cpi$Date <- ymd(shelter_cpi$DATE) 
-shelter_cpi <- shelter_cpi|>
-            rename("Index" = CUSR0000SAS2RS)|>
-            select(Date, Index)
+cpi_all_items$Date <- ymd(cpi_all_items$DATE) 
+cpi_all_items <- cpi_all_items|>
+            rename("cpi_all_items" = CPIAUCSL)|>
+            select(Date, cpi_all_items)
 
-glimpse(shelter_cpi)
-tail(shelter_cpi)
+cpi_all_items$year <- year(cpi_all_items$Date)
+cpi_all_items$month <- month(cpi_all_items$Date)
+
+cpi_all_items <- cpi_all_items|>
+  filter(month == 01 | month == 4 | month == 7| month == 10)|>
+  select(Date, cpi_all_items)
+
+cpi_all_items$CPI_change <- (cpi_all_items$cpi_all_items - lag(cpi_all_items$cpi_all_items))
+
+glimpse(cpi_all_items)
+head(cpi_all_items)
 ```
 
 ```{r}
-ggplot(shelter_cpi, aes(x = Date, y = Index)) + geom_line() + labs(title = "CPI for All Urban Consumers: Rent of Shelter, over 10 years")
+eci_all  <- read.csv('data/ECIWAG.csv')
+
+eci_all$Date <- ymd(eci_all$DATE) 
+eci_all <- eci_all|>
+            rename("eci" = ECIWAG)|>
+            select(Date, eci)
+
+eci_all$eci_change <- eci_all$eci - lag(eci_all$eci)
+
+glimpse(eci_all)
+head(eci_all)
+```
+
+
+```{r}
+cpi_eci <- cpi_all_items |>
+          inner_join(eci_all, by = 'Date')|>
+          select(Date, CPI_change, eci_change)
+
+cpi_eci$diff_btw_cpi_eci <- cpi_eci$CPI_change - cpi_eci$eci_change
+
+head(cpi_eci)
+```
+```{r}
+ggplot(data = cpi_eci, mapping = aes(y = CPI_change, x = eci_change)) + geom_point(color = "purple") + geom_smooth(method = "loess")+
+  labs(
+  y = "Change in CPI",
+  x = "Change in ECI",
+  title = "Change in ECI vs Change in CPI") + 
+  scale_x_continuous( limits = c(0, 7),
+                 breaks = c(0, 1,2,3,4,5,6,7)) +
+  scale_y_continuous(limits = c(0, 7),
+                 breaks = c(0, 1,2,3,4,5,6,7))
+```
+
+
+```{r}
+ggplot(cpi_eci, aes(x = Date, y = diff_btw_cpi_eci)) + geom_line() + labs(x = "Date", y = "Difference between CPI and ECI", title = "Difference between CPI and ECI over a period of 10 years")
 ```
 
 ```{r}
-gasoline_cpi <- read.csv("data/CUSR0000SETB01.csv")
+employment_rate <- read.csv('data/LREM64TTUSM156S.csv')
 
-gasoline_cpi$Date <- ymd(gasoline_cpi$DATE) 
-gasoline_cpi <- gasoline_cpi|>
-            rename("Index" = CUSR0000SETB01)|>
-            select(Date, Index)
+employment_rate$Date <- ymd(employment_rate$DATE) 
+employment_rate <- employment_rate|>
+            rename("emp_rate" = LREM64TTUSM156S)|>
+            select(Date, emp_rate)
 
-glimpse(gasoline_cpi)
-tail(gasoline_cpi)
+glimpse(employment_rate)
+head(employment_rate)
+```
+
+```{r}
+gov_cur_expend <- read.csv('data/GEXPND.csv')
+
+gov_cur_expend$Date <- ymd(gov_cur_expend$DATE) 
+gov_cur_expend <- gov_cur_expend|>
+            rename("gov_cur_expend" = GEXPND)|>
+            select(Date, gov_cur_expend)
+
+glimpse(gov_cur_expend)
+head(gov_cur_expend)
+```
+
+```{r}
+personal_consumption_expend <- read.csv('data/PCE.csv')
+
+personal_consumption_expend$Date <- ymd(personal_consumption_expend$DATE) 
+personal_consumption_expend <- personal_consumption_expend|>
+            rename("pce" = PCE)|>
+            select(Date, pce)
+
+glimpse(personal_consumption_expend)
+head(personal_consumption_expend)
+```
+
+```{r}
+corp_profit_after_tax <- read.csv('data/CPATAX.csv')
+
+corp_profit_after_tax$Date <- ymd(corp_profit_after_tax$DATE) 
+corp_profit_after_tax <- corp_profit_after_tax|>
+            rename("corp_profit" = CPATAX)|>
+            select(Date, corp_profit)
+
+glimpse(corp_profit_after_tax)
+head(corp_profit_after_tax)
+```
+
+```{r}
+finance_data <- cpi_eci|>
+                left_join(gov_cur_expend, by = 'Date')
+
+finance_data <- finance_data|>
+                left_join(employment_rate, by = 'Date')
+
+finance_data <- finance_data|>
+                left_join(corp_profit_after_tax, by = 'Date')
+
+finance_data <- finance_data|>
+               left_join(personal_consumption_expend, by = 'Date')|>
+                select(!(CPI_change:eci_change))
+
+
+
+glimpse(finance_data)
+head(finance_data)
+```
+
+```{r}
+ggplot(data = finance_data, aes(x = emp_rate, y = diff_btw_cpi_eci)) + geom_point(color = "purple") +labs(x = "Employment Rate", y = "Difference between CPI and ECI", title = " Employment Rate vs Difference between CPI and ECI")
 ```
 ```{r}
-ggplot(gasoline_cpi, aes(x = Date, y = Index)) + geom_line() +labs(title = "CPI for All Urban Consumers: Gasoline, over 10 years")
+ggplot(data = finance_data, aes(x = gov_cur_expend, y = diff_btw_cpi_eci)) + geom_point(color = "purple")+labs(x = "Government Current Expenditures", y = "Difference between CPI and ECI", title = "Government Current Expenditures vs Difference between CPI and ECI")
+```
+```{r}
+ggplot(data = finance_data, aes(x = pce, y = diff_btw_cpi_eci)) + geom_point(color = "purple") + labs(x = "Personal Consumption Expenditures", y = "Difference between CPI and ECI", title = "Personal Consumption Expenditures vs Difference between CPI and ECI")
+```
+```{r}
+ggplot(data = finance_data, aes(x = corp_profit, y = diff_btw_cpi_eci)) + geom_point(color = "purple") + labs(x = "Corporate Profits after Tax", y = "Difference between CPI and ECI", title = "Corporate Profits vs Difference between CPI and ECI")
 ```
 
+
+```{r}
+observed_mean = mean(finance_data$diff_btw_cpi_eci, na.rm = TRUE)
+observed_mean
+```
+
+```{r}
+set.seed(7890)
+
+null_dist <- finance_data |>
+              specify(response = diff_btw_cpi_eci) |>
+              hypothesize(null = "point", mu = 0) |>
+              generate(reps = 1000, type = "bootstrap") |>
+              calculate(stat = "mean")
+null_dist
+```
+
+```{r}
+visualize(null_dist) + 
+  shade_p_value(obs_stat = observed_mean, direction = "right")
+
+```
+
+```{r}
+null_dist|> 
+  get_p_value(obs_stat = observed_mean, direction = "right")
+```
+
+
+```{r}
+finance_data.multreg <- lm(diff_btw_cpi_eci ~  emp_rate + gov_cur_expend + pce + corp_profit, data = finance_data) 
+
+finance_data.multreg
+tidy(finance_data.multreg) |> knitr::kable(digits = 3)
+```
+
+```{r}
+modelsummary::modelsummary(finance_data.multreg, gof_map = c("nobs", "r.squared", "adj.r.squared"))
+```
 
 ```{r}
 totalwage_weekly <- read.csv("data/LES1252881500Q.csv")
@@ -106,51 +225,51 @@ ggplot(totalwage_weekly, aes(x = Date, y = tt_wk_wage)) + geom_line() + labs(x =
 ```
 
 ```{r}
-menwage_weekly <- read.csv("data/LES1252881800Q.csv")
+malewage_weekly <- read.csv("data/LES1252881800Q.csv")
 
-menwage_weekly$Date <- ymd(menwage_weekly$DATE) 
-menwage_weekly <- menwage_weekly|>
-            rename("men_wk_wage" = LES1252881800Q)|>
-            select(Date, men_wk_wage)
+malewage_weekly$Date <- ymd(malewage_weekly$DATE) 
+malewage_weekly <- malewage_weekly|>
+            rename("male_wk_wage" = LES1252881800Q)|>
+            select(Date, male_wk_wage)
 
-glimpse(menwage_weekly)
-tail(menwage_weekly)
+glimpse(malewage_weekly)
+tail(malewage_weekly)
 ```
 ```{r}
-ggplot(menwage_weekly, aes(x = Date, y = men_wk_wage)) + geom_line()+ labs(x = "Date", y = "Dollars", title = "Median weekly earnings over 10 years for men of ages 16 and above")
-```
-
-```{r}
-womenwage_weekly <- read.csv("data/LES1252882700Q.csv")
-
-womenwage_weekly$Date <- ymd(womenwage_weekly$DATE) 
-womenwage_weekly <- womenwage_weekly|>
-            rename("women_wk_wage" = LES1252882700Q)|>
-            select(Date, women_wk_wage)
-
-glimpse(womenwage_weekly)
-tail(womenwage_weekly)
+ggplot(malewage_weekly, aes(x = Date, y = male_wk_wage)) + geom_line()+ labs(x = "Date", y = "Dollars", title = "Median weekly earnings over 10 years for male of ages 16 and above")
 ```
 
 ```{r}
-ggplot(womenwage_weekly, aes(x = Date, y = women_wk_wage)) + geom_line() + labs(x = "Date", y = "Dollars", title = "Median weekly earnings over 10 years for women of ages 16 and above")
+femalewage_weekly <- read.csv("data/LES1252882700Q.csv")
+
+femalewage_weekly$Date <- ymd(femalewage_weekly$DATE) 
+femalewage_weekly <- femalewage_weekly|>
+            rename("female_wk_wage" = LES1252882700Q)|>
+            select(Date, female_wk_wage)
+
+glimpse(femalewage_weekly)
+tail(femalewage_weekly)
+```
+
+```{r}
+ggplot(femalewage_weekly, aes(x = Date, y = female_wk_wage)) + geom_line() + labs(x = "Date", y = "Dollars", title = "Median weekly earnings over 10 years for female of ages 16 and above")
 ```
 ```{r}
 wages <- totalwage_weekly |>
-  left_join(menwage_weekly, by = 'Date')
+  inner_join(malewage_weekly, by = 'Date')
 
 wages <- wages |>
-        left_join(womenwage_weekly, by = 'Date')
+        inner_join(femalewage_weekly, by = 'Date')
 wages
 ```
 
 ```{r}
-ggplot(wages, aes(x = men_wk_wage, y = women_wk_wage)) +
+ggplot(wages, aes(x = male_wk_wage, y = female_wk_wage)) +
 geom_point(color = "steelblue1") +
 labs(
-  x = "Median weekly earnings by Men",
-  y = "Median weekly earnings by Women",
-  title = "Median weekly earnings by Men vs Women") + 
+  x = "Median weekly earnings by Male",
+  y = "Median weekly earnings by Female",
+  title = "Median weekly earnings by Male vs Female") + 
   scale_x_continuous(labels = scales::dollar, 
                         limits = c(690, 1200),
                  breaks = c(600, 700, 800, 900, 1000, 1100, 1200)) +
@@ -158,31 +277,143 @@ labs(
                      limits = c(690, 1200),
                  breaks = c(600, 700, 800, 900, 1000, 1100, 1200))
 ```
+
 ```{r}
-perc_chng_gasoline <- gasoline_cpi
-perc_chng_gasoline$year <- year(gasoline_cpi$Date)
-perc_chng_gasoline$month <- month(gasoline_cpi$Date)
+wages <- wages|>
+        pivot_longer(
+          cols = male_wk_wage:female_wk_wage,
+          names_to = "Gender",
+    values_to = "Wage"
+  )|> mutate(Gender = if_else(Gender == "male_wk_wage", "Male", "Female"))|>
+  select(-tt_wk_wage)
 
-perc_chng_gasoline <- perc_chng_gasoline|>
-  group_by(year)|>
-  filter(month == 1)|>
-  select(year, Index)
+wages
+```
 
-perc_chng_gasoline
-                      
+
+```{r}
+emp_rate_female <- read.csv('data/LREM25FEUSM156S.csv')
+
+emp_rate_female$Date <- ymd(emp_rate_female$DATE) 
+emp_rate_female <- emp_rate_female|>
+            rename("emp_rate_female" = LREM25FEUSM156S)|>
+            select(Date, emp_rate_female)
+
+glimpse(emp_rate_female)
+emp_rate_female
 ```
 
 ```{r}
-perc_chng_gasoline$perc_inc <- (perc_chng_gasoline$Index - lag(perc_chng_gasoline$Index))/ lag(perc_chng_gasoline$Index)*100
+emp_rate_male <- read.csv('data/LREM25MAUSM156S.csv')
 
-perc_chng_gasoline
+emp_rate_male$Date <- ymd(emp_rate_male$DATE) 
+emp_rate_male <- emp_rate_male|>
+            rename("emp_rate_male" = LREM25MAUSM156S)|>
+            select(Date, emp_rate_male)
 
-knitr::kable(perc_chng_gasoline, col.names = c("Year", "CPI", "Percent_Change_CPI"))
+glimpse(emp_rate_male)
+emp_rate_male
 ```
 ```{r}
-perc_chng_gasoline$year <- as.Date(as.character(perc_chng_gasoline$year), format = "%Y")
-ggplot(perc_chng_gasoline, aes(x = year, y = perc_inc)) + geom_line() + labs(x = "Year", y = "Percent Change in CPI", title = "12-month percent change in CPI for gasoline, Jan. 2013 - Jan. 2022") 
+emp_rate <- emp_rate_male|>
+            inner_join(emp_rate_female, by='Date')
+
+emp_rate <- emp_rate|>
+        pivot_longer(
+          cols = emp_rate_male:emp_rate_female,
+          names_to = "Gender",
+    values_to = "emp_rate"
+  )|> mutate(Gender = if_else(Gender == "emp_rate_male", "Male", "Female"))
+
+emp_rate
 ```
 
-In the above table I have calculated 12-month percent change in CPI for gasoline. The line plot is also obtained. We can see that CPI decreased in 2016, 2020 and 2022. But the CPI is increasing towards the end of 2022.
+
+```{r}
+female_householder <- read.csv('data/OFHHFH.csv')
+
+female_householder$Date <- ymd(female_householder$DATE) 
+female_householder <- female_householder|>
+            rename("female_householder" = OFHHFH)|>
+            select(Date, female_householder)
+
+glimpse(female_householder)
+female_householder
+
+```
+
+
+```{r}
+male_householder <- read.csv('data/OFHHMH.csv')
+
+male_householder$Date <- ymd(male_householder$DATE) 
+male_householder <- male_householder|>
+            rename("male_householder" = OFHHMH)|>
+            select(Date, male_householder)
+
+glimpse(male_householder)
+male_householder
+```
+
+```{r}
+house_holder <- male_householder|>
+            inner_join(female_householder, by='Date')
+
+
+house_holder <- house_holder|>
+        pivot_longer(
+          cols = male_householder:female_householder,
+          names_to = "Gender",
+    values_to = "house_holder"
+  )|> mutate(Gender = if_else(Gender == "male_householder", "Male", "Female"))
+
+house_holder
+```
+```{r}
+wages <- left_join(wages,emp_rate, by = c('Date'='Date', 'Gender'='Gender'))
+
+wages <-left_join(wages,house_holder, by = c('Date'='Date', 'Gender'='Gender'))
+
+glimpse(wages)
+wages
+```
+
+
+```{r}
+est_ate <-  wages |>
+       specify(Wage ~ Gender) |>
+      calculate(stat = "diff in means", order = c("Male", "Female"))
+est_ate
+```
+
+```{r}
+null_dist_wage_diff <- wages |>
+                    specify(Wage ~ Gender) |>
+                    hypothesize(null = "independence") |>
+                    generate(reps = 1000, type = "permute") |>
+                    calculate(stat = "diff in means", order = c("Male", "Female"))
+
+ate_pval <- null_dist_wage_diff |>
+get_p_value(obs_stat = est_ate, direction = "right")
+ate_pval
+```
+
+```{r}
+null_dist_wage_diff |>
+visualize() +
+shade_p_value(obs_stat = est_ate, direction = "right")
+```
+
+
+```{r}
+wages.multreg <- lm(Wage ~  Gender + emp_rate + house_holder, data = wages) 
+
+wages.multreg
+tidy(wages.multreg) |> knitr::kable(digits = 3)
+```
+
+```{r}
+modelsummary::modelsummary(wages.multreg, gof_map = c("nobs", "r.squared", "adj.r.squared"))
+```
+
 

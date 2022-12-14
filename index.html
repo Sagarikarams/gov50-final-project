@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/CUSR0000SAF11.csv","data/CUSR0000SAM2.csv","data/CUSR0000SAS2RS.csv","data/CUSR0000SETB01.csv","data/LES1252881500Q.csv","data/LES1252881800Q.csv","data/LES1252882700Q.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-11-1.png","index_files/figure-html5/unnamed-chunk-13-1.png","index_files/figure-html5/unnamed-chunk-15-1.png","index_files/figure-html5/unnamed-chunk-17-1.png","index_files/figure-html5/unnamed-chunk-20-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/CPATAX.csv","data/CPIAUCSL.csv","data/CUSR0000SAF11.csv","data/CUSR0000SAM2.csv","data/CUSR0000SAS2RS.csv","data/CUSR0000SETB01.csv","data/ECIWAG.csv","data/GEXPND.csv","data/IQ.csv","data/IR.csv","data/LES1252881500Q.csv","data/LES1252881800Q.csv","data/LES1252882700Q.csv","data/LREM25FEUSM156S.csv","data/LREM25MAUSM156S.csv","data/LREM64TTUSM156S.csv","data/OFHHFH.csv","data/OFHHMH.csv","data/PCE.csv","data/PPIACO.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-11-1.png","index_files/figure-html5/unnamed-chunk-13-1.png","index_files/figure-html5/unnamed-chunk-14-1.png","index_files/figure-html5/unnamed-chunk-15-1.png","index_files/figure-html5/unnamed-chunk-17-1.png","index_files/figure-html5/unnamed-chunk-19-1.png","index_files/figure-html5/unnamed-chunk-20-1.png","index_files/figure-html5/unnamed-chunk-21-1.png","index_files/figure-html5/unnamed-chunk-23-1.png","index_files/figure-html5/unnamed-chunk-25-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-36-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1473,6 +1473,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.16/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1527,139 +1529,957 @@ Hence a negative relationship between the two variables would provide support fo
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/keberwein/blscrapeR'>blscrapeR</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span></code></pre>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/infer'>infer</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>cpi_all_items</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/CPIAUCSL.csv"</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>food_cpi</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/CUSR0000SAF11.csv"</span><span class='op'>)</span></span>
-<span><span class='va'>food_cpi</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>food_cpi</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
-<span><span class='va'>food_cpi</span> <span class='op'>&lt;-</span> <span class='va'>food_cpi</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"Index"</span> <span class='op'>=</span> <span class='va'>CUSR0000SAF11</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>Index</span><span class='op'>)</span></span>
+<span><span class='va'>cpi_all_items</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>cpi_all_items</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>cpi_all_items</span> <span class='op'>&lt;-</span> <span class='va'>cpi_all_items</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"cpi_all_items"</span> <span class='op'>=</span> <span class='va'>CPIAUCSL</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>cpi_all_items</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>food_cpi</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>cpi_all_items</span><span class='op'>$</span><span class='va'>year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='va'>cpi_all_items</span><span class='op'>$</span><span class='va'>Date</span><span class='op'>)</span></span>
+<span><span class='va'>cpi_all_items</span><span class='op'>$</span><span class='va'>month</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/month.html'>month</a></span><span class='op'>(</span><span class='va'>cpi_all_items</span><span class='op'>$</span><span class='va'>Date</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>cpi_all_items</span> <span class='op'>&lt;-</span> <span class='va'>cpi_all_items</span><span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>month</span> <span class='op'>==</span> <span class='fl'>01</span> <span class='op'>|</span> <span class='va'>month</span> <span class='op'>==</span> <span class='fl'>4</span> <span class='op'>|</span> <span class='va'>month</span> <span class='op'>==</span> <span class='fl'>7</span><span class='op'>|</span> <span class='va'>month</span> <span class='op'>==</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>cpi_all_items</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>cpi_all_items</span><span class='op'>$</span><span class='va'>CPI_change</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>cpi_all_items</span><span class='op'>$</span><span class='va'>cpi_all_items</span> <span class='op'>-</span> <span class='fu'>lag</span><span class='op'>(</span><span class='va'>cpi_all_items</span><span class='op'>$</span><span class='va'>cpi_all_items</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>cpi_all_items</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>Rows: 118
-Columns: 2
-$ Date  &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 2013-…
-$ Index &lt;dbl&gt; 233.696, 233.526, 233.580, 233.776, 233.184, 233.809, …</code></pre>
+<pre><code>Rows: 40
+Columns: 3
+$ Date          &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-0…
+$ cpi_all_items &lt;dbl&gt; 231.679, 231.797, 232.900, 233.669, 235.288, 2…
+$ CPI_change    &lt;dbl&gt; NA, 0.118, 1.103, 0.769, 1.619, 1.180, 1.030, …</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>food_cpi</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>cpi_all_items</span></span></code></pre>
 </div>
-<pre><code>          Date   Index
-113 2022-05-01 285.711
-114 2022-06-01 288.618
-115 2022-07-01 292.495
-116 2022-08-01 294.684
-117 2022-09-01 296.708
-118 2022-10-01 297.882</code></pre>
+<pre><code>         Date cpi_all_items CPI_change
+1  2013-01-01       231.679         NA
+2  2013-04-01       231.797      0.118
+3  2013-07-01       232.900      1.103
+4  2013-10-01       233.669      0.769
+5  2014-01-01       235.288      1.619
+6  2014-04-01       236.468      1.180
+7  2014-07-01       237.498      1.030
+8  2014-10-01       237.430     -0.068
+9  2015-01-01       234.747     -2.683
+10 2015-04-01       236.222      1.475
+11 2015-07-01       238.034      1.812
+12 2015-10-01       237.733     -0.301
+13 2016-01-01       237.652     -0.081
+14 2016-04-01       238.992      1.340
+15 2016-07-01       240.101      1.109
+16 2016-10-01       241.741      1.640
+17 2017-01-01       243.618      1.877
+18 2017-04-01       244.193      0.575
+19 2017-07-01       244.243      0.050
+20 2017-10-01       246.626      2.383
+21 2018-01-01       248.743      2.117
+22 2018-04-01       250.146      1.403
+23 2018-07-01       251.323      1.177
+24 2018-10-01       252.862      1.539
+25 2019-01-01       252.470     -0.392
+26 2019-04-01       255.163      2.693
+27 2019-07-01       255.900      0.737
+28 2019-10-01       257.305      1.405
+29 2020-01-01       258.682      1.377
+30 2020-04-01       256.094     -2.588
+31 2020-07-01       258.543      2.449
+32 2020-10-01       260.352      1.809
+33 2021-01-01       262.200      1.848
+34 2021-04-01       266.727      4.527
+35 2021-07-01       272.184      5.457
+36 2021-10-01       276.590      4.406
+37 2022-01-01       281.933      5.343
+38 2022-04-01       288.663      6.730
+39 2022-07-01       295.271      6.608
+40 2022-10-01       298.062      2.791</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>eci_all</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/ECIWAG.csv'</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>food_cpi</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>Index</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"CPI for All Urban Consumers: Food, over 10 years"</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>eci_all</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>eci_all</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>eci_all</span> <span class='op'>&lt;-</span> <span class='va'>eci_all</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"eci"</span> <span class='op'>=</span> <span class='va'>ECIWAG</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>eci</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>eci_all</span><span class='op'>$</span><span class='va'>eci_change</span> <span class='op'>&lt;-</span> <span class='va'>eci_all</span><span class='op'>$</span><span class='va'>eci</span> <span class='op'>-</span> <span class='fu'>lag</span><span class='op'>(</span><span class='va'>eci_all</span><span class='op'>$</span><span class='va'>eci</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>eci_all</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+<pre><code>Rows: 39
+Columns: 3
+$ Date       &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01, …
+$ eci        &lt;dbl&gt; 117.4, 118.0, 118.4, 119.1, 119.4, 120.2, 121.1, …
+$ eci_change &lt;dbl&gt; NA, 0.6, 0.4, 0.7, 0.3, 0.8, 0.9, 0.7, 0.8, 0.2, …</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>eci_all</span></span></code></pre>
+</div>
+<pre><code>         Date   eci eci_change
+1  2013-01-01 117.4         NA
+2  2013-04-01 118.0        0.6
+3  2013-07-01 118.4        0.4
+4  2013-10-01 119.1        0.7
+5  2014-01-01 119.4        0.3
+6  2014-04-01 120.2        0.8
+7  2014-07-01 121.1        0.9
+8  2014-10-01 121.8        0.7
+9  2015-01-01 122.6        0.8
+10 2015-04-01 122.8        0.2
+11 2015-07-01 123.6        0.8
+12 2015-10-01 124.3        0.7
+13 2016-01-01 125.1        0.8
+14 2016-04-01 126.0        0.9
+15 2016-07-01 126.6        0.6
+16 2016-10-01 127.3        0.7
+17 2017-01-01 128.2        0.9
+18 2017-04-01 129.0        0.8
+19 2017-07-01 129.9        0.9
+20 2017-10-01 130.8        0.9
+21 2018-01-01 131.9        1.1
+22 2018-04-01 132.8        0.9
+23 2018-07-01 134.0        1.2
+24 2018-10-01 134.9        0.9
+25 2019-01-01 135.8        0.9
+26 2019-04-01 136.8        1.0
+27 2019-07-01 138.0        1.2
+28 2019-10-01 138.9        0.9
+29 2020-01-01 140.3        1.4
+30 2020-04-01 140.8        0.5
+31 2020-07-01 141.6        0.8
+32 2020-10-01 142.8        1.2
+33 2021-01-01 144.5        1.7
+34 2021-04-01 145.8        1.3
+35 2021-07-01 148.1        2.3
+36 2021-10-01 149.8        1.7
+37 2022-01-01 151.7        1.9
+38 2022-04-01 154.1        2.4
+39 2022-07-01 155.9        1.8</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>medical_services_cpi</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/CUSR0000SAM2.csv"</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>cpi_eci</span> <span class='op'>&lt;-</span> <span class='va'>cpi_all_items</span> <span class='op'>|&gt;</span></span>
+<span>          <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>eci_all</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>          <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>CPI_change</span>, <span class='va'>eci_change</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>medical_services_cpi</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>medical_services_cpi</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
-<span><span class='va'>medical_services_cpi</span> <span class='op'>&lt;-</span> <span class='va'>medical_services_cpi</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"Index"</span> <span class='op'>=</span> <span class='va'>CUSR0000SAM2</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>Index</span><span class='op'>)</span></span>
+<span><span class='va'>cpi_eci</span><span class='op'>$</span><span class='va'>diff_btw_cpi_eci</span> <span class='op'>&lt;-</span> <span class='va'>cpi_eci</span><span class='op'>$</span><span class='va'>CPI_change</span> <span class='op'>-</span> <span class='va'>cpi_eci</span><span class='op'>$</span><span class='va'>eci_change</span></span>
 <span></span>
-<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>medical_services_cpi</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>cpi_eci</span></span></code></pre>
 </div>
-<pre><code>Rows: 118
-Columns: 2
-$ Date  &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 2013-…
-$ Index &lt;dbl&gt; 448.525, 449.885, 451.519, 451.305, 450.850, 453.246, …</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>medical_services_cpi</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>          Date   Index
-113 2022-05-01 593.887
-114 2022-06-01 598.227
-115 2022-07-01 600.683
-116 2022-08-01 605.320
-117 2022-09-01 611.319
-118 2022-10-01 607.635</code></pre>
+<pre><code>         Date CPI_change eci_change diff_btw_cpi_eci
+1  2013-01-01         NA         NA               NA
+2  2013-04-01      0.118        0.6           -0.482
+3  2013-07-01      1.103        0.4            0.703
+4  2013-10-01      0.769        0.7            0.069
+5  2014-01-01      1.619        0.3            1.319
+6  2014-04-01      1.180        0.8            0.380
+7  2014-07-01      1.030        0.9            0.130
+8  2014-10-01     -0.068        0.7           -0.768
+9  2015-01-01     -2.683        0.8           -3.483
+10 2015-04-01      1.475        0.2            1.275
+11 2015-07-01      1.812        0.8            1.012
+12 2015-10-01     -0.301        0.7           -1.001
+13 2016-01-01     -0.081        0.8           -0.881
+14 2016-04-01      1.340        0.9            0.440
+15 2016-07-01      1.109        0.6            0.509
+16 2016-10-01      1.640        0.7            0.940
+17 2017-01-01      1.877        0.9            0.977
+18 2017-04-01      0.575        0.8           -0.225
+19 2017-07-01      0.050        0.9           -0.850
+20 2017-10-01      2.383        0.9            1.483
+21 2018-01-01      2.117        1.1            1.017
+22 2018-04-01      1.403        0.9            0.503
+23 2018-07-01      1.177        1.2           -0.023
+24 2018-10-01      1.539        0.9            0.639
+25 2019-01-01     -0.392        0.9           -1.292
+26 2019-04-01      2.693        1.0            1.693
+27 2019-07-01      0.737        1.2           -0.463
+28 2019-10-01      1.405        0.9            0.505
+29 2020-01-01      1.377        1.4           -0.023
+30 2020-04-01     -2.588        0.5           -3.088
+31 2020-07-01      2.449        0.8            1.649
+32 2020-10-01      1.809        1.2            0.609
+33 2021-01-01      1.848        1.7            0.148
+34 2021-04-01      4.527        1.3            3.227
+35 2021-07-01      5.457        2.3            3.157
+36 2021-10-01      4.406        1.7            2.706
+37 2022-01-01      5.343        1.9            3.443
+38 2022-04-01      6.730        2.4            4.330
+39 2022-07-01      6.608        1.8            4.808</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>medical_services_cpi</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>Index</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"CPI for All Urban Consumers: Medical Care Services, over 10 years"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>cpi_eci</span>, mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>CPI_change</span>, x <span class='op'>=</span> <span class='va'>eci_change</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"loess"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>  y <span class='op'>=</span> <span class='st'>"Change in CPI"</span>,</span>
+<span>  x <span class='op'>=</span> <span class='st'>"Change in ECI"</span>,</span>
+<span>  title <span class='op'>=</span> <span class='st'>"Change in ECI vs Change in CPI"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span> limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>7</span><span class='op'>)</span>,</span>
+<span>                 breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>5</span>,<span class='fl'>6</span>,<span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>7</span><span class='op'>)</span>,</span>
+<span>                 breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>5</span>,<span class='fl'>6</span>,<span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>shelter_cpi</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/CUSR0000SAS2RS.csv"</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>cpi_eci</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Date"</span>, y <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI"</span>, title <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI over a period of 10 years"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>employment_rate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/LREM64TTUSM156S.csv'</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>shelter_cpi</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>shelter_cpi</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
-<span><span class='va'>shelter_cpi</span> <span class='op'>&lt;-</span> <span class='va'>shelter_cpi</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"Index"</span> <span class='op'>=</span> <span class='va'>CUSR0000SAS2RS</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>Index</span><span class='op'>)</span></span>
+<span><span class='va'>employment_rate</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>employment_rate</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>employment_rate</span> <span class='op'>&lt;-</span> <span class='va'>employment_rate</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"emp_rate"</span> <span class='op'>=</span> <span class='va'>LREM64TTUSM156S</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>emp_rate</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>shelter_cpi</span><span class='op'>)</span></span></code></pre>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>employment_rate</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Rows: 118
 Columns: 2
-$ Date  &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 2013-…
-$ Index &lt;dbl&gt; 271.027, 271.592, 272.070, 272.591, 273.230, 273.762, …</code></pre>
+$ Date     &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 20…
+$ emp_rate &lt;dbl&gt; 67.26213, 67.24430, 67.17818, 67.27208, 67.34115, 6…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>shelter_cpi</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>employment_rate</span></span></code></pre>
 </div>
-<pre><code>          Date   Index
-113 2022-05-01 365.903
-114 2022-06-01 368.072
-115 2022-07-01 370.011
-116 2022-08-01 372.642
-117 2022-09-01 375.493
-118 2022-10-01 378.211</code></pre>
+<pre><code>          Date emp_rate
+1   2013-01-01 67.26213
+2   2013-02-01 67.24430
+3   2013-03-01 67.17818
+4   2013-04-01 67.27208
+5   2013-05-01 67.34115
+6   2013-06-01 67.36551
+7   2013-07-01 67.48724
+8   2013-08-01 67.41380
+9   2013-09-01 67.46780
+10  2013-10-01 67.13272
+11  2013-11-01 67.44479
+12  2013-12-01 67.54066
+13  2014-01-01 67.71565
+14  2014-02-01 67.68666
+15  2014-03-01 67.91856
+16  2014-04-01 67.94177
+17  2014-05-01 68.02864
+18  2014-06-01 68.15516
+19  2014-07-01 68.16956
+20  2014-08-01 68.22472
+21  2014-09-01 68.27917
+22  2014-10-01 68.57749
+23  2014-11-01 68.51416
+24  2014-12-01 68.48383
+25  2015-01-01 68.54859
+26  2015-02-01 68.53842
+27  2015-03-01 68.43064
+28  2015-04-01 68.69066
+29  2015-05-01 68.79920
+30  2015-06-01 68.68655
+31  2015-07-01 68.63372
+32  2015-08-01 68.75541
+33  2015-09-01 68.64934
+34  2015-10-01 68.72340
+35  2015-11-01 68.87099
+36  2015-12-01 69.08193
+37  2016-01-01 69.19295
+38  2016-02-01 69.26551
+39  2016-03-01 69.28538
+40  2016-04-01 69.18198
+41  2016-05-01 69.29066
+42  2016-06-01 69.19945
+43  2016-07-01 69.28273
+44  2016-08-01 69.38049
+45  2016-09-01 69.42298
+46  2016-10-01 69.42285
+47  2016-11-01 69.54493
+48  2016-12-01 69.56577
+49  2017-01-01 69.65182
+50  2017-02-01 69.72013
+51  2017-03-01 70.01469
+52  2017-04-01 70.09844
+53  2017-05-01 70.01056
+54  2017-06-01 70.09847
+55  2017-07-01 70.17238
+56  2017-08-01 70.14623
+57  2017-09-01 70.47116
+58  2017-10-01 70.25534
+59  2017-11-01 70.28743
+60  2017-12-01 70.28246
+61  2018-01-01 70.32650
+62  2018-02-01 70.60699
+63  2018-03-01 70.56057
+64  2018-04-01 70.58481
+65  2018-05-01 70.73740
+66  2018-06-01 70.69868
+67  2018-07-01 70.86077
+68  2018-08-01 70.56328
+69  2018-09-01 70.75889
+70  2018-10-01 70.91898
+71  2018-11-01 70.97863
+72  2018-12-01 70.99821
+73  2019-01-01 71.02451
+74  2019-02-01 71.04895
+75  2019-03-01 71.08091
+76  2019-04-01 71.15338
+77  2019-05-01 71.14833
+78  2019-06-01 71.24547
+79  2019-07-01 71.25928
+80  2019-08-01 71.41368
+81  2019-09-01 71.70883
+82  2019-10-01 71.70623
+83  2019-11-01 71.68944
+84  2019-12-01 71.69983
+85  2020-01-01 71.78041
+86  2020-02-01 71.79669
+87  2020-03-01 70.56660
+88  2020-04-01 60.25358
+89  2020-05-01 62.23152
+90  2020-06-01 64.76973
+91  2020-07-01 65.36791
+92  2020-08-01 66.84051
+93  2020-09-01 66.90578
+94  2020-10-01 67.87441
+95  2020-11-01 67.78986
+96  2020-12-01 67.93362
+97  2021-01-01 68.19991
+98  2021-02-01 68.41506
+99  2021-03-01 68.60024
+100 2021-04-01 68.69773
+101 2021-05-01 68.96994
+102 2021-06-01 69.10005
+103 2021-07-01 69.65713
+104 2021-08-01 69.66359
+105 2021-09-01 69.92497
+106 2021-10-01 70.16923
+107 2021-11-01 70.60850
+108 2021-12-01 70.81798
+109 2022-01-01 70.76403
+110 2022-02-01 70.90053
+111 2022-03-01 71.31592
+112 2022-04-01 71.26014
+113 2022-05-01 71.37700
+114 2022-06-01 71.23838
+115 2022-07-01 71.29388
+116 2022-08-01 71.45066
+117 2022-09-01 71.41336
+118 2022-10-01 71.20688</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>shelter_cpi</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>Index</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"CPI for All Urban Consumers: Rent of Shelter, over 10 years"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>gov_cur_expend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/GEXPND.csv'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>gov_cur_expend</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>gov_cur_expend</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>gov_cur_expend</span> <span class='op'>&lt;-</span> <span class='va'>gov_cur_expend</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"gov_cur_expend"</span> <span class='op'>=</span> <span class='va'>GEXPND</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>gov_cur_expend</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>gov_cur_expend</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+<pre><code>Rows: 39
+Columns: 2
+$ Date           &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-…
+$ gov_cur_expend &lt;dbl&gt; 5704.610, 5722.833, 5743.347, 5754.859, 5799.…</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>gov_cur_expend</span></span></code></pre>
+</div>
+<pre><code>         Date gov_cur_expend
+1  2013-01-01       5704.610
+2  2013-04-01       5722.833
+3  2013-07-01       5743.347
+4  2013-10-01       5754.859
+5  2014-01-01       5799.275
+6  2014-04-01       5861.485
+7  2014-07-01       5938.887
+8  2014-10-01       5959.021
+9  2015-01-01       5994.746
+10 2015-04-01       6051.429
+11 2015-07-01       6091.065
+12 2015-10-01       6120.844
+13 2016-01-01       6174.097
+14 2016-04-01       6219.774
+15 2016-07-01       6281.676
+16 2016-10-01       6318.015
+17 2017-01-01       6359.651
+18 2017-04-01       6384.019
+19 2017-07-01       6451.440
+20 2017-10-01       6522.283
+21 2018-01-01       6616.141
+22 2018-04-01       6714.007
+23 2018-07-01       6804.833
+24 2018-10-01       6900.348
+25 2019-01-01       7021.257
+26 2019-04-01       7110.273
+27 2019-07-01       7187.328
+28 2019-10-01       7219.111
+29 2020-01-01       7282.096
+30 2020-04-01      10566.752
+31 2020-07-01       9490.917
+32 2020-10-01       8239.984
+33 2021-01-01      10582.222
+34 2021-04-01       9282.256
+35 2021-07-01       8971.618
+36 2021-10-01       8533.098
+37 2022-01-01       8402.624
+38 2022-04-01       8535.823
+39 2022-07-01       8707.120</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>gasoline_cpi</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/CUSR0000SETB01.csv"</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>personal_consumption_expend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/PCE.csv'</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>gasoline_cpi</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>gasoline_cpi</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
-<span><span class='va'>gasoline_cpi</span> <span class='op'>&lt;-</span> <span class='va'>gasoline_cpi</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"Index"</span> <span class='op'>=</span> <span class='va'>CUSR0000SETB01</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>Index</span><span class='op'>)</span></span>
+<span><span class='va'>personal_consumption_expend</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>personal_consumption_expend</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>personal_consumption_expend</span> <span class='op'>&lt;-</span> <span class='va'>personal_consumption_expend</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"pce"</span> <span class='op'>=</span> <span class='va'>PCE</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>pce</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>gasoline_cpi</span><span class='op'>)</span></span></code></pre>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>personal_consumption_expend</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Rows: 118
 Columns: 2
-$ Date  &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 2013-…
-$ Index &lt;dbl&gt; 306.734, 329.253, 310.442, 295.206, 293.131, 298.112, …</code></pre>
+$ Date &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-01, 2013-0…
+$ pce  &lt;dbl&gt; 11245.8, 11282.1, 11268.9, 11259.3, 11295.1, 11318.5, 1…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>gasoline_cpi</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>personal_consumption_expend</span></span></code></pre>
 </div>
-<pre><code>          Date   Index
-113 2022-05-01 372.063
-114 2022-06-01 413.606
-115 2022-07-01 381.710
-116 2022-08-01 341.383
-117 2022-09-01 324.646
-118 2022-10-01 337.609</code></pre>
+<pre><code>          Date     pce
+1   2013-01-01 11245.8
+2   2013-02-01 11282.1
+3   2013-03-01 11268.9
+4   2013-04-01 11259.3
+5   2013-05-01 11295.1
+6   2013-06-01 11318.5
+7   2013-07-01 11346.8
+8   2013-08-01 11376.9
+9   2013-09-01 11413.9
+10  2013-10-01 11465.2
+11  2013-11-01 11531.3
+12  2013-12-01 11558.6
+13  2014-01-01 11543.7
+14  2014-02-01 11615.4
+15  2014-03-01 11695.2
+16  2014-04-01 11737.4
+17  2014-05-01 11778.6
+18  2014-06-01 11838.0
+19  2014-07-01 11879.2
+20  2014-08-01 11958.8
+21  2014-09-01 11964.9
+22  2014-10-01 12035.5
+23  2014-11-01 12058.4
+24  2014-12-01 12067.6
+25  2015-01-01 12036.5
+26  2015-02-01 12083.1
+27  2015-03-01 12132.2
+28  2015-04-01 12170.3
+29  2015-05-01 12233.6
+30  2015-06-01 12270.3
+31  2015-07-01 12327.5
+32  2015-08-01 12359.3
+33  2015-09-01 12356.4
+34  2015-10-01 12362.3
+35  2015-11-01 12397.5
+36  2015-12-01 12432.8
+37  2016-01-01 12452.1
+38  2016-02-01 12526.3
+39  2016-03-01 12506.8
+40  2016-04-01 12586.0
+41  2016-05-01 12624.4
+42  2016-06-01 12701.7
+43  2016-07-01 12720.6
+44  2016-08-01 12749.8
+45  2016-09-01 12806.8
+46  2016-10-01 12828.1
+47  2016-11-01 12853.6
+48  2016-12-01 12962.9
+49  2017-01-01 13020.4
+50  2017-02-01 13038.6
+51  2017-03-01 13089.3
+52  2017-04-01 13114.1
+53  2017-05-01 13117.6
+54  2017-06-01 13170.3
+55  2017-07-01 13193.5
+56  2017-08-01 13234.1
+57  2017-09-01 13353.4
+58  2017-10-01 13383.4
+59  2017-11-01 13479.8
+60  2017-12-01 13609.0
+61  2018-01-01 13628.4
+62  2018-02-01 13668.3
+63  2018-03-01 13735.4
+64  2018-04-01 13792.1
+65  2018-05-01 13860.2
+66  2018-06-01 13900.2
+67  2018-07-01 13952.3
+68  2018-08-01 14001.1
+69  2018-09-01 14013.0
+70  2018-10-01 14096.5
+71  2018-11-01 14160.6
+72  2018-12-01 14051.7
+73  2019-01-01 14090.0
+74  2019-02-01 14113.9
+75  2019-03-01 14233.8
+76  2019-04-01 14272.6
+77  2019-05-01 14322.1
+78  2019-06-01 14376.6
+79  2019-07-01 14448.3
+80  2019-08-01 14487.0
+81  2019-09-01 14511.2
+82  2019-10-01 14554.2
+83  2019-11-01 14613.8
+84  2019-12-01 14689.2
+85  2020-01-01 14728.8
+86  2020-02-01 14785.7
+87  2020-03-01 13806.0
+88  2020-04-01 12082.4
+89  2020-05-01 13129.4
+90  2020-06-01 13937.5
+91  2020-07-01 14230.1
+92  2020-08-01 14352.8
+93  2020-09-01 14583.3
+94  2020-10-01 14626.1
+95  2020-11-01 14561.0
+96  2020-12-01 14571.1
+97  2021-01-01 14932.2
+98  2021-02-01 14843.2
+99  2021-03-01 15619.1
+100 2021-04-01 15712.6
+101 2021-05-01 15767.9
+102 2021-06-01 15960.1
+103 2021-07-01 16027.9
+104 2021-08-01 16146.0
+105 2021-09-01 16268.0
+106 2021-10-01 16473.7
+107 2021-11-01 16557.9
+108 2021-12-01 16522.4
+109 2022-01-01 16725.6
+110 2022-02-01 16844.5
+111 2022-03-01 17054.2
+112 2022-04-01 17115.6
+113 2022-05-01 17231.1
+114 2022-06-01 17437.4
+115 2022-07-01 17405.0
+116 2022-08-01 17518.2
+117 2022-09-01 17628.2
+118 2022-10-01 17776.1</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>gasoline_cpi</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>Index</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"CPI for All Urban Consumers: Gasoline, over 10 years"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>corp_profit_after_tax</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/CPATAX.csv'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>corp_profit_after_tax</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>corp_profit_after_tax</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>corp_profit_after_tax</span> <span class='op'>&lt;-</span> <span class='va'>corp_profit_after_tax</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"corp_profit"</span> <span class='op'>=</span> <span class='va'>CPATAX</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>corp_profit</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>corp_profit_after_tax</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+<pre><code>Rows: 39
+Columns: 2
+$ Date        &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01,…
+$ corp_profit &lt;dbl&gt; 1622.754, 1643.068, 1646.395, 1679.998, 1563.708…</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>corp_profit_after_tax</span></span></code></pre>
+</div>
+<pre><code>         Date corp_profit
+1  2013-01-01    1622.754
+2  2013-04-01    1643.068
+3  2013-07-01    1646.395
+4  2013-10-01    1679.998
+5  2014-01-01    1563.708
+6  2014-04-01    1712.454
+7  2014-07-01    1793.119
+8  2014-10-01    1783.305
+9  2015-01-01    1706.902
+10 2015-04-01    1689.152
+11 2015-07-01    1675.564
+12 2015-10-01    1585.203
+13 2016-01-01    1664.907
+14 2016-04-01    1624.245
+15 2016-07-01    1649.948
+16 2016-10-01    1707.035
+17 2017-01-01    1791.420
+18 2017-04-01    1803.738
+19 2017-07-01    1845.108
+20 2017-10-01    1884.593
+21 2018-01-01    1968.334
+22 2018-04-01    1972.682
+23 2018-07-01    2028.383
+24 2018-10-01    2087.605
+25 2019-01-01    2050.963
+26 2019-04-01    2115.309
+27 2019-07-01    2129.992
+28 2019-10-01    2122.670
+29 2020-01-01    1965.922
+30 2020-04-01    1746.054
+31 2020-07-01    2154.305
+32 2020-10-01    2018.472
+33 2021-01-01    2237.374
+34 2021-04-01    2401.680
+35 2021-07-01    2456.406
+36 2021-10-01    2435.930
+37 2022-01-01    2374.566
+38 2022-04-01    2522.604
+39 2022-07-01    2517.368</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>finance_data</span> <span class='op'>&lt;-</span> <span class='va'>cpi_eci</span><span class='op'>|&gt;</span></span>
+<span>                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>gov_cur_expend</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>finance_data</span> <span class='op'>&lt;-</span> <span class='va'>finance_data</span><span class='op'>|&gt;</span></span>
+<span>                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>employment_rate</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>finance_data</span> <span class='op'>&lt;-</span> <span class='va'>finance_data</span><span class='op'>|&gt;</span></span>
+<span>                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>corp_profit_after_tax</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>finance_data</span> <span class='op'>&lt;-</span> <span class='va'>finance_data</span><span class='op'>|&gt;</span></span>
+<span>               <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>personal_consumption_expend</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>                <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>!</span><span class='op'>(</span><span class='va'>CPI_change</span><span class='op'>:</span><span class='va'>eci_change</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>finance_data</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>Rows: 39
+Columns: 6
+$ Date             &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-1…
+$ diff_btw_cpi_eci &lt;dbl&gt; NA, -0.482, 0.703, 0.069, 1.319, 0.380, 0.1…
+$ gov_cur_expend   &lt;dbl&gt; 5704.610, 5722.833, 5743.347, 5754.859, 579…
+$ emp_rate         &lt;dbl&gt; 67.26213, 67.27208, 67.48724, 67.13272, 67.…
+$ corp_profit      &lt;dbl&gt; 1622.754, 1643.068, 1646.395, 1679.998, 156…
+$ pce              &lt;dbl&gt; 11245.8, 11259.3, 11346.8, 11465.2, 11543.7…</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>finance_data</span></span></code></pre>
+</div>
+<pre><code>         Date diff_btw_cpi_eci gov_cur_expend emp_rate corp_profit
+1  2013-01-01               NA       5704.610 67.26213    1622.754
+2  2013-04-01           -0.482       5722.833 67.27208    1643.068
+3  2013-07-01            0.703       5743.347 67.48724    1646.395
+4  2013-10-01            0.069       5754.859 67.13272    1679.998
+5  2014-01-01            1.319       5799.275 67.71565    1563.708
+6  2014-04-01            0.380       5861.485 67.94177    1712.454
+7  2014-07-01            0.130       5938.887 68.16956    1793.119
+8  2014-10-01           -0.768       5959.021 68.57749    1783.305
+9  2015-01-01           -3.483       5994.746 68.54859    1706.902
+10 2015-04-01            1.275       6051.429 68.69066    1689.152
+11 2015-07-01            1.012       6091.065 68.63372    1675.564
+12 2015-10-01           -1.001       6120.844 68.72340    1585.203
+13 2016-01-01           -0.881       6174.097 69.19295    1664.907
+14 2016-04-01            0.440       6219.774 69.18198    1624.245
+15 2016-07-01            0.509       6281.676 69.28273    1649.948
+16 2016-10-01            0.940       6318.015 69.42285    1707.035
+17 2017-01-01            0.977       6359.651 69.65182    1791.420
+18 2017-04-01           -0.225       6384.019 70.09844    1803.738
+19 2017-07-01           -0.850       6451.440 70.17238    1845.108
+20 2017-10-01            1.483       6522.283 70.25534    1884.593
+21 2018-01-01            1.017       6616.141 70.32650    1968.334
+22 2018-04-01            0.503       6714.007 70.58481    1972.682
+23 2018-07-01           -0.023       6804.833 70.86077    2028.383
+24 2018-10-01            0.639       6900.348 70.91898    2087.605
+25 2019-01-01           -1.292       7021.257 71.02451    2050.963
+26 2019-04-01            1.693       7110.273 71.15338    2115.309
+27 2019-07-01           -0.463       7187.328 71.25928    2129.992
+28 2019-10-01            0.505       7219.111 71.70623    2122.670
+29 2020-01-01           -0.023       7282.096 71.78041    1965.922
+30 2020-04-01           -3.088      10566.752 60.25358    1746.054
+31 2020-07-01            1.649       9490.917 65.36791    2154.305
+32 2020-10-01            0.609       8239.984 67.87441    2018.472
+33 2021-01-01            0.148      10582.222 68.19991    2237.374
+34 2021-04-01            3.227       9282.256 68.69773    2401.680
+35 2021-07-01            3.157       8971.618 69.65713    2456.406
+36 2021-10-01            2.706       8533.098 70.16923    2435.930
+37 2022-01-01            3.443       8402.624 70.76403    2374.566
+38 2022-04-01            4.330       8535.823 71.26014    2522.604
+39 2022-07-01            4.808       8707.120 71.29388    2517.368
+       pce
+1  11245.8
+2  11259.3
+3  11346.8
+4  11465.2
+5  11543.7
+6  11737.4
+7  11879.2
+8  12035.5
+9  12036.5
+10 12170.3
+11 12327.5
+12 12362.3
+13 12452.1
+14 12586.0
+15 12720.6
+16 12828.1
+17 13020.4
+18 13114.1
+19 13193.5
+20 13383.4
+21 13628.4
+22 13792.1
+23 13952.3
+24 14096.5
+25 14090.0
+26 14272.6
+27 14448.3
+28 14554.2
+29 14728.8
+30 12082.4
+31 14230.1
+32 14626.1
+33 14932.2
+34 15712.6
+35 16027.9
+36 16473.7
+37 16725.6
+38 17115.6
+39 17405.0</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>observed_mean</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>finance_data</span><span class='op'>$</span><span class='va'>diff_btw_cpi_eci</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span><span class='va'>observed_mean</span></span></code></pre>
+</div>
+<pre><code>[1] 0.6603158</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>7890</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>null_dist</span> <span class='op'>&lt;-</span> <span class='va'>finance_data</span> <span class='op'>|&gt;</span></span>
+<span>              <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span>response <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>              <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"point"</span>, mu <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>              <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"bootstrap"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>              <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"mean"</span><span class='op'>)</span></span>
+<span><span class='va'>null_dist</span></span></code></pre>
+</div>
+<pre><code>Response: diff_btw_cpi_eci (numeric)
+Null Hypothesis: point
+# A tibble: 1,000 × 2
+   replicate    stat
+       &lt;int&gt;   &lt;dbl&gt;
+ 1         1 -0.365 
+ 2         2 -0.239 
+ 3         3  0.0163
+ 4         4  0.362 
+ 5         5 -0.290 
+ 6         6  0.221 
+ 7         7  0.299 
+ 8         8  0.0513
+ 9         9 -0.403 
+10        10  0.197 
+# … with 990 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://infer.tidymodels.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='va'>null_dist</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/shade_p_value.html'>shade_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>observed_mean</span>, direction <span class='op'>=</span> <span class='st'>"right"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>null_dist</span><span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/get_p_value.html'>get_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>observed_mean</span>, direction <span class='op'>=</span> <span class='st'>"right"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1   0.005</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>finance_data.multreg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>diff_btw_cpi_eci</span> <span class='op'>~</span>  <span class='va'>emp_rate</span> <span class='op'>+</span> <span class='va'>gov_cur_expend</span> <span class='op'>+</span> <span class='va'>pce</span> <span class='op'>+</span> <span class='va'>corp_profit</span>, data <span class='op'>=</span> <span class='va'>finance_data</span><span class='op'>)</span> </span>
+<span></span>
+<span><span class='va'>finance_data.multreg</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = diff_btw_cpi_eci ~ emp_rate + gov_cur_expend + pce + 
+    corp_profit, data = finance_data)
+
+Coefficients:
+   (Intercept)        emp_rate  gov_cur_expend             pce  
+     31.290860       -0.663499       -0.001529        0.001630  
+   corp_profit  
+      0.002055  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>finance_data.multreg</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>digits <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">31.291</td>
+<td style="text-align: right;">13.734</td>
+<td style="text-align: right;">2.278</td>
+<td style="text-align: right;">0.029</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">emp_rate</td>
+<td style="text-align: right;">-0.663</td>
+<td style="text-align: right;">0.227</td>
+<td style="text-align: right;">-2.917</td>
+<td style="text-align: right;">0.006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gov_cur_expend</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">-3.593</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pce</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">3.159</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">corp_profit</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.889</td>
+<td style="text-align: right;">0.381</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>finance_data.multreg</span>, gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+31.291
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(13.734)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+emp_rate
+</td>
+<td style="text-align:center;">
+−0.663
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.227)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gov_cur_expend
+</td>
+<td style="text-align:center;">
+−0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.0004)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pce
+</td>
+<td style="text-align:center;">
+0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.0005)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+corp_profit
+</td>
+<td style="text-align:center;">
+0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.626
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.581
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1691,130 +2511,130 @@ $ tt_wk_wage &lt;int&gt; 768, 777, 779, 782, 790, 781, 798, 795, 802, 803,…</c
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>totalwage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>tt_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Date"</span>, y <span class='op'>=</span> <span class='st'>"Dollars"</span>,title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for ages 16 and above"</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-19-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>menwage_weekly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/LES1252881800Q.csv"</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>malewage_weekly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/LES1252881800Q.csv"</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>menwage_weekly</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
-<span><span class='va'>menwage_weekly</span> <span class='op'>&lt;-</span> <span class='va'>menwage_weekly</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"men_wk_wage"</span> <span class='op'>=</span> <span class='va'>LES1252881800Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>men_wk_wage</span><span class='op'>)</span></span>
+<span><span class='va'>malewage_weekly</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>malewage_weekly</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>malewage_weekly</span> <span class='op'>&lt;-</span> <span class='va'>malewage_weekly</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"male_wk_wage"</span> <span class='op'>=</span> <span class='va'>LES1252881800Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>male_wk_wage</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span><span class='op'>)</span></span></code></pre>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>malewage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Rows: 39
 Columns: 2
-$ Date        &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01,…
-$ men_wk_wage &lt;int&gt; 860, 863, 855, 865, 865, 860, 878, 878, 886, 890…</code></pre>
+$ Date         &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01…
+$ male_wk_wage &lt;int&gt; 860, 863, 855, 865, 865, 860, 878, 878, 886, 89…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>malewage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date men_wk_wage
-34 2021-04-01        1098
-35 2021-07-01        1108
-36 2021-10-01        1100
-37 2022-01-01        1118
-38 2022-04-01        1148
-39 2022-07-01        1166</code></pre>
+<pre><code>         Date male_wk_wage
+34 2021-04-01         1098
+35 2021-07-01         1108
+36 2021-10-01         1100
+37 2022-01-01         1118
+38 2022-04-01         1148
+39 2022-07-01         1166</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>men_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Date"</span>, y <span class='op'>=</span> <span class='st'>"Dollars"</span>, title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for men of ages 16 and above"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>malewage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>male_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Date"</span>, y <span class='op'>=</span> <span class='st'>"Dollars"</span>, title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for male of ages 16 and above"</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-21-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>womenwage_weekly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/LES1252882700Q.csv"</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>femalewage_weekly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/LES1252882700Q.csv"</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>womenwage_weekly</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
-<span><span class='va'>womenwage_weekly</span> <span class='op'>&lt;-</span> <span class='va'>womenwage_weekly</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"women_wk_wage"</span> <span class='op'>=</span> <span class='va'>LES1252882700Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>women_wk_wage</span><span class='op'>)</span></span>
+<span><span class='va'>femalewage_weekly</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>femalewage_weekly</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>femalewage_weekly</span> <span class='op'>&lt;-</span> <span class='va'>femalewage_weekly</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"female_wk_wage"</span> <span class='op'>=</span> <span class='va'>LES1252882700Q</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>female_wk_wage</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span><span class='op'>)</span></span></code></pre>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>femalewage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Rows: 39
 Columns: 2
-$ Date          &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-0…
-$ women_wk_wage &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, 7…</code></pre>
+$ Date           &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-…
+$ female_wk_wage &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, …</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>femalewage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date women_wk_wage
-34 2021-04-01           905
-35 2021-07-01           915
-36 2021-10-01           928
-37 2022-01-01           937
-38 2022-04-01           949
-39 2022-07-01           968</code></pre>
+<pre><code>         Date female_wk_wage
+34 2021-04-01            905
+35 2021-07-01            915
+36 2021-10-01            928
+37 2022-01-01            937
+38 2022-04-01            949
+39 2022-07-01            968</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>women_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Date"</span>, y <span class='op'>=</span> <span class='st'>"Dollars"</span>, title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for women of ages 16 and above"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>femalewage_weekly</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Date</span>, y <span class='op'>=</span> <span class='va'>female_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Date"</span>, y <span class='op'>=</span> <span class='st'>"Dollars"</span>, title <span class='op'>=</span> <span class='st'>"Median weekly earnings over 10 years for female of ages 16 and above"</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-23-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wages</span> <span class='op'>&lt;-</span> <span class='va'>totalwage_weekly</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>menwage_weekly</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>malewage_weekly</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>wages</span> <span class='op'>&lt;-</span> <span class='va'>wages</span> <span class='op'>|&gt;</span></span>
-<span>        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>womenwage_weekly</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
+<span>        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>femalewage_weekly</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
 <span><span class='va'>wages</span></span></code></pre>
 </div>
-<pre><code>         Date tt_wk_wage men_wk_wage women_wk_wage
-1  2013-01-01        768         860           699
-2  2013-04-01        777         863           706
-3  2013-07-01        779         855           705
-4  2013-10-01        782         865           712
-5  2014-01-01        790         865           716
-6  2014-04-01        781         860           715
-7  2014-07-01        798         878           721
-8  2014-10-01        795         878           724
-9  2015-01-01        802         886           725
-10 2015-04-01        803         890           725
-11 2015-07-01        809         896           727
-12 2015-10-01        821         904           729
-13 2016-01-01        823         904           744
-14 2016-04-01        828         913           746
-15 2016-07-01        834         918           748
-16 2016-10-01        845         924           759
-17 2017-01-01        858         941           760
-18 2017-04-01        863         937           782
-19 2017-07-01        864         944           769
-20 2017-10-01        854         943           770
-21 2018-01-01        875         956           778
-22 2018-04-01        881         963           783
-23 2018-07-01        891         980           796
-24 2018-10-01        897         991           795
-25 2019-01-01        899         994           803
-26 2019-04-01        913        1004           818
-27 2019-07-01        922        1010           825
-28 2019-10-01        934        1020           842
-29 2020-01-01        951        1056           853
-30 2020-04-01       1008        1091           919
-31 2020-07-01        996        1112           901
-32 2020-10-01        982        1069           894
-33 2021-01-01        983        1079           897
-34 2021-04-01        996        1098           905
-35 2021-07-01       1003        1108           915
-36 2021-10-01       1008        1100           928
-37 2022-01-01       1030        1118           937
-38 2022-04-01       1045        1148           949
-39 2022-07-01       1068        1166           968</code></pre>
+<pre><code>         Date tt_wk_wage male_wk_wage female_wk_wage
+1  2013-01-01        768          860            699
+2  2013-04-01        777          863            706
+3  2013-07-01        779          855            705
+4  2013-10-01        782          865            712
+5  2014-01-01        790          865            716
+6  2014-04-01        781          860            715
+7  2014-07-01        798          878            721
+8  2014-10-01        795          878            724
+9  2015-01-01        802          886            725
+10 2015-04-01        803          890            725
+11 2015-07-01        809          896            727
+12 2015-10-01        821          904            729
+13 2016-01-01        823          904            744
+14 2016-04-01        828          913            746
+15 2016-07-01        834          918            748
+16 2016-10-01        845          924            759
+17 2017-01-01        858          941            760
+18 2017-04-01        863          937            782
+19 2017-07-01        864          944            769
+20 2017-10-01        854          943            770
+21 2018-01-01        875          956            778
+22 2018-04-01        881          963            783
+23 2018-07-01        891          980            796
+24 2018-10-01        897          991            795
+25 2019-01-01        899          994            803
+26 2019-04-01        913         1004            818
+27 2019-07-01        922         1010            825
+28 2019-10-01        934         1020            842
+29 2020-01-01        951         1056            853
+30 2020-04-01       1008         1091            919
+31 2020-07-01        996         1112            901
+32 2020-10-01        982         1069            894
+33 2021-01-01        983         1079            897
+34 2021-04-01        996         1098            905
+35 2021-07-01       1003         1108            915
+36 2021-10-01       1008         1100            928
+37 2022-01-01       1030         1118            937
+38 2022-04-01       1045         1148            949
+39 2022-07-01       1068         1166            968</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>wages</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>men_wk_wage</span>, y <span class='op'>=</span> <span class='va'>women_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>wages</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>male_wk_wage</span>, y <span class='op'>=</span> <span class='va'>female_wk_wage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"steelblue1"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>  x <span class='op'>=</span> <span class='st'>"Median weekly earnings by Men"</span>,</span>
-<span>  y <span class='op'>=</span> <span class='st'>"Median weekly earnings by Women"</span>,</span>
-<span>  title <span class='op'>=</span> <span class='st'>"Median weekly earnings by Men vs Women"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  x <span class='op'>=</span> <span class='st'>"Median weekly earnings by Male"</span>,</span>
+<span>  y <span class='op'>=</span> <span class='st'>"Median weekly earnings by Female"</span>,</span>
+<span>  title <span class='op'>=</span> <span class='st'>"Median weekly earnings by Male vs Female"</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/dollar_format.html'>dollar</a></span>, </span>
 <span>                        limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>690</span>, <span class='fl'>1200</span><span class='op'>)</span>,</span>
 <span>                 breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>600</span>, <span class='fl'>700</span>, <span class='fl'>800</span>, <span class='fl'>900</span>, <span class='fl'>1000</span>, <span class='fl'>1100</span>, <span class='fl'>1200</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -1822,130 +2642,723 @@ $ women_wk_wage &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, 7…</c
 <span>                     limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>690</span>, <span class='fl'>1200</span><span class='op'>)</span>,</span>
 <span>                 breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>600</span>, <span class='fl'>700</span>, <span class='fl'>800</span>, <span class='fl'>900</span>, <span class='fl'>1000</span>, <span class='fl'>1100</span>, <span class='fl'>1200</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-25-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>perc_chng_gasoline</span> <span class='op'>&lt;-</span> <span class='va'>gasoline_cpi</span></span>
-<span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='va'>gasoline_cpi</span><span class='op'>$</span><span class='va'>Date</span><span class='op'>)</span></span>
-<span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>month</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/month.html'>month</a></span><span class='op'>(</span><span class='va'>gasoline_cpi</span><span class='op'>$</span><span class='va'>Date</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wages</span> <span class='op'>&lt;-</span> <span class='va'>wages</span><span class='op'>|&gt;</span></span>
+<span>        <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span></span>
+<span>          cols <span class='op'>=</span> <span class='va'>male_wk_wage</span><span class='op'>:</span><span class='va'>female_wk_wage</span>,</span>
+<span>          names_to <span class='op'>=</span> <span class='st'>"Gender"</span>,</span>
+<span>    values_to <span class='op'>=</span> <span class='st'>"Wage"</span></span>
+<span>  <span class='op'>)</span><span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Gender <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>Gender</span> <span class='op'>==</span> <span class='st'>"male_wk_wage"</span>, <span class='st'>"Male"</span>, <span class='st'>"Female"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>tt_wk_wage</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>perc_chng_gasoline</span> <span class='op'>&lt;-</span> <span class='va'>perc_chng_gasoline</span><span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>month</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>Index</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>perc_chng_gasoline</span></span></code></pre>
+<span><span class='va'>wages</span></span></code></pre>
 </div>
-<pre><code># A tibble: 10 × 2
-# Groups:   year [10]
-    year Index
-   &lt;dbl&gt; &lt;dbl&gt;
- 1  2013  307.
- 2  2014  308.
- 3  2015  200.
- 4  2016  181.
- 5  2017  218.
- 6  2018  236.
- 7  2019  211.
- 8  2020  237.
- 9  2021  216.
-10  2022  302.</code></pre>
+<pre><code># A tibble: 78 × 3
+   Date       Gender  Wage
+   &lt;date&gt;     &lt;chr&gt;  &lt;int&gt;
+ 1 2013-01-01 Male     860
+ 2 2013-01-01 Female   699
+ 3 2013-04-01 Male     863
+ 4 2013-04-01 Female   706
+ 5 2013-07-01 Male     855
+ 6 2013-07-01 Female   705
+ 7 2013-10-01 Male     865
+ 8 2013-10-01 Female   712
+ 9 2014-01-01 Male     865
+10 2014-01-01 Female   716
+# … with 68 more rows</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>perc_inc</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>Index</span> <span class='op'>-</span> <span class='fu'>lag</span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>Index</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span> <span class='fu'>lag</span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>Index</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>emp_rate_female</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/LREM25FEUSM156S.csv'</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>perc_chng_gasoline</span></span></code></pre>
+<span><span class='va'>emp_rate_female</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>emp_rate_female</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>emp_rate_female</span> <span class='op'>&lt;-</span> <span class='va'>emp_rate_female</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"emp_rate_female"</span> <span class='op'>=</span> <span class='va'>LREM25FEUSM156S</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>emp_rate_female</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>emp_rate_female</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 10 × 3
-# Groups:   year [10]
-    year Index perc_inc
-   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
- 1  2013  307.   NA    
- 2  2014  308.    0.543
- 3  2015  200.  -35.3  
- 4  2016  181.   -9.07 
- 5  2017  218.   20.1  
- 6  2018  236.    8.15 
- 7  2019  211.  -10.6  
- 8  2020  237.   12.3  
- 9  2021  216.   -8.90 
-10  2022  302.   40.0  </code></pre>
+<pre><code>Rows: 118
+Columns: 2
+$ Date            &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04…
+$ emp_rate_female &lt;dbl&gt; 68.86507, 68.97191, 68.96808, 69.10345, 69.3…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span>, col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Year"</span>, <span class='st'>"CPI"</span>, <span class='st'>"Percent_Change_CPI"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>emp_rate_female</span></span></code></pre>
+</div>
+<pre><code>          Date emp_rate_female
+1   2013-01-01        68.86507
+2   2013-02-01        68.97191
+3   2013-03-01        68.96808
+4   2013-04-01        69.10345
+5   2013-05-01        69.37194
+6   2013-06-01        69.16663
+7   2013-07-01        69.52443
+8   2013-08-01        69.64619
+9   2013-09-01        69.68034
+10  2013-10-01        69.08798
+11  2013-11-01        69.25314
+12  2013-12-01        69.39848
+13  2014-01-01        69.82815
+14  2014-02-01        70.02622
+15  2014-03-01        69.79737
+16  2014-04-01        69.89145
+17  2014-05-01        69.87947
+18  2014-06-01        70.13558
+19  2014-07-01        69.82265
+20  2014-08-01        70.13146
+21  2014-09-01        69.92525
+22  2014-10-01        70.13322
+23  2014-11-01        70.20206
+24  2014-12-01        70.15185
+25  2015-01-01        70.20106
+26  2015-02-01        70.25596
+27  2015-03-01        69.97244
+28  2015-04-01        70.20660
+29  2015-05-01        70.47730
+30  2015-06-01        70.44313
+31  2015-07-01        70.17364
+32  2015-08-01        70.30378
+33  2015-09-01        70.26089
+34  2015-10-01        70.34343
+35  2015-11-01        70.66569
+36  2015-12-01        70.56022
+37  2016-01-01        70.75059
+38  2016-02-01        70.82247
+39  2016-03-01        70.93041
+40  2016-04-01        70.87975
+41  2016-05-01        71.03483
+42  2016-06-01        70.87690
+43  2016-07-01        71.39449
+44  2016-08-01        71.17182
+45  2016-09-01        71.44682
+46  2016-10-01        71.52554
+47  2016-11-01        71.40524
+48  2016-12-01        71.34585
+49  2017-01-01        71.28627
+50  2017-02-01        71.63518
+51  2017-03-01        71.99344
+52  2017-04-01        72.00991
+53  2017-05-01        71.90608
+54  2017-06-01        72.01004
+55  2017-07-01        72.38814
+56  2017-08-01        72.12754
+57  2017-09-01        72.59240
+58  2017-10-01        72.16779
+59  2017-11-01        72.52444
+60  2017-12-01        72.20475
+61  2018-01-01        72.09051
+62  2018-02-01        72.32339
+63  2018-03-01        72.41241
+64  2018-04-01        72.28224
+65  2018-05-01        72.47143
+66  2018-06-01        72.68429
+67  2018-07-01        73.06442
+68  2018-08-01        72.91224
+69  2018-09-01        73.14074
+70  2018-10-01        73.40664
+71  2018-11-01        73.15422
+72  2018-12-01        73.25965
+73  2019-01-01        73.28045
+74  2019-02-01        73.32468
+75  2019-03-01        73.08810
+76  2019-04-01        73.20588
+77  2019-05-01        73.31188
+78  2019-06-01        73.38684
+79  2019-07-01        73.10712
+80  2019-08-01        74.00386
+81  2019-09-01        74.31046
+82  2019-10-01        74.37011
+83  2019-11-01        74.18275
+84  2019-12-01        74.47126
+85  2020-01-01        74.61433
+86  2020-02-01        74.60029
+87  2020-03-01        73.37003
+88  2020-04-01        63.42522
+89  2020-05-01        64.90271
+90  2020-06-01        67.53896
+91  2020-07-01        67.97804
+92  2020-08-01        69.25413
+93  2020-09-01        69.05836
+94  2020-10-01        70.11552
+95  2020-11-01        70.26177
+96  2020-12-01        70.42726
+97  2021-01-01        70.39912
+98  2021-02-01        70.63791
+99  2021-03-01        71.11924
+100 2021-04-01        71.12440
+101 2021-05-01        71.29319
+102 2021-06-01        71.23482
+103 2021-07-01        71.92331
+104 2021-08-01        72.06148
+105 2021-09-01        72.19311
+106 2021-10-01        72.25826
+107 2021-11-01        72.95343
+108 2021-12-01        73.30686
+109 2022-01-01        73.34660
+110 2022-02-01        73.19816
+111 2022-03-01        74.14473
+112 2022-04-01        73.96288
+113 2022-05-01        74.07340
+114 2022-06-01        73.79215
+115 2022-07-01        74.06201
+116 2022-08-01        74.78315
+117 2022-09-01        74.51083
+118 2022-10-01        74.06811</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>emp_rate_male</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/LREM25MAUSM156S.csv'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>emp_rate_male</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>emp_rate_male</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>emp_rate_male</span> <span class='op'>&lt;-</span> <span class='va'>emp_rate_male</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"emp_rate_male"</span> <span class='op'>=</span> <span class='va'>LREM25MAUSM156S</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>emp_rate_male</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>emp_rate_male</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>Rows: 118
+Columns: 2
+$ Date          &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-0…
+$ emp_rate_male &lt;dbl&gt; 82.58338, 82.74719, 82.66598, 82.74347, 83.055…</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>emp_rate_male</span></span></code></pre>
+</div>
+<pre><code>          Date emp_rate_male
+1   2013-01-01      82.58338
+2   2013-02-01      82.74719
+3   2013-03-01      82.66598
+4   2013-04-01      82.74347
+5   2013-05-01      83.05508
+6   2013-06-01      82.89206
+7   2013-07-01      82.95169
+8   2013-08-01      82.62583
+9   2013-09-01      82.62933
+10  2013-10-01      82.40229
+11  2013-11-01      82.97998
+12  2013-12-01      83.11234
+13  2014-01-01      83.17001
+14  2014-02-01      82.95537
+15  2014-03-01      83.35076
+16  2014-04-01      83.19942
+17  2014-05-01      83.36797
+18  2014-06-01      83.78431
+19  2014-07-01      83.93807
+20  2014-08-01      83.93786
+21  2014-09-01      84.12149
+22  2014-10-01      84.00203
+23  2014-11-01      83.85981
+24  2014-12-01      84.18436
+25  2015-01-01      84.20702
+26  2015-02-01      84.24854
+27  2015-03-01      84.40291
+28  2015-04-01      84.41080
+29  2015-05-01      84.34020
+30  2015-06-01      84.48851
+31  2015-07-01      84.43562
+32  2015-08-01      84.64667
+33  2015-09-01      84.64647
+34  2015-10-01      84.36711
+35  2015-11-01      84.36470
+36  2015-12-01      84.50325
+37  2016-01-01      84.90411
+38  2016-02-01      84.94950
+39  2016-03-01      85.15376
+40  2016-04-01      84.79789
+41  2016-05-01      84.98226
+42  2016-06-01      85.09394
+43  2016-07-01      84.88379
+44  2016-08-01      84.83453
+45  2016-09-01      84.90482
+46  2016-10-01      84.96096
+47  2016-11-01      84.96856
+48  2016-12-01      85.09132
+49  2017-01-01      85.24103
+50  2017-02-01      85.14108
+51  2017-03-01      85.15405
+52  2017-04-01      85.39919
+53  2017-05-01      85.31272
+54  2017-06-01      85.34751
+55  2017-07-01      85.28951
+56  2017-08-01      84.95921
+57  2017-09-01      85.67622
+58  2017-10-01      85.61319
+59  2017-11-01      85.62794
+60  2017-12-01      86.02107
+61  2018-01-01      85.89639
+62  2018-02-01      86.35580
+63  2018-03-01      86.20887
+64  2018-04-01      86.25503
+65  2018-05-01      86.36101
+66  2018-06-01      86.12245
+67  2018-07-01      86.24075
+68  2018-08-01      85.93538
+69  2018-09-01      85.98658
+70  2018-10-01      86.12846
+71  2018-11-01      86.34607
+72  2018-12-01      86.08275
+73  2019-01-01      86.40998
+74  2019-02-01      86.49876
+75  2019-03-01      86.73324
+76  2019-04-01      86.43843
+77  2019-05-01      86.31880
+78  2019-06-01      86.14403
+79  2019-07-01      86.19716
+80  2019-08-01      86.18990
+81  2019-09-01      86.46012
+82  2019-10-01      86.46501
+83  2019-11-01      86.72150
+84  2019-12-01      86.51808
+85  2020-01-01      86.58023
+86  2020-02-01      86.42862
+87  2020-03-01      85.81455
+88  2020-04-01      75.93630
+89  2020-05-01      77.91896
+90  2020-06-01      79.51488
+91  2020-07-01      79.82179
+92  2020-08-01      81.42801
+93  2020-09-01      81.51026
+94  2020-10-01      82.11515
+95  2020-11-01      81.96798
+96  2020-12-01      82.34913
+97  2021-01-01      82.60355
+98  2021-02-01      82.71985
+99  2021-03-01      82.80414
+100 2021-04-01      82.89659
+101 2021-05-01      82.95701
+102 2021-06-01      83.07933
+103 2021-07-01      83.86989
+104 2021-08-01      83.95999
+105 2021-09-01      84.15097
+106 2021-10-01      84.64204
+107 2021-11-01      84.99389
+108 2021-12-01      85.09827
+109 2022-01-01      85.02695
+110 2022-02-01      85.84881
+111 2022-03-01      85.98289
+112 2022-04-01      85.96567
+113 2022-05-01      86.00443
+114 2022-06-01      85.79113
+115 2022-07-01      85.85513
+116 2022-08-01      85.81974
+117 2022-09-01      86.14514
+118 2022-10-01      85.78746</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>emp_rate</span> <span class='op'>&lt;-</span> <span class='va'>emp_rate_male</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>emp_rate_female</span>, by<span class='op'>=</span><span class='st'>'Date'</span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='va'>emp_rate</span> <span class='op'>&lt;-</span> <span class='va'>emp_rate</span><span class='op'>|&gt;</span></span>
+<span>        <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span></span>
+<span>          cols <span class='op'>=</span> <span class='va'>emp_rate_male</span><span class='op'>:</span><span class='va'>emp_rate_female</span>,</span>
+<span>          names_to <span class='op'>=</span> <span class='st'>"Gender"</span>,</span>
+<span>    values_to <span class='op'>=</span> <span class='st'>"emp_rate"</span></span>
+<span>  <span class='op'>)</span><span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Gender <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>Gender</span> <span class='op'>==</span> <span class='st'>"emp_rate_male"</span>, <span class='st'>"Male"</span>, <span class='st'>"Female"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>emp_rate</span></span></code></pre>
+</div>
+<pre><code># A tibble: 236 × 3
+   Date       Gender emp_rate
+   &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt;
+ 1 2013-01-01 Male       82.6
+ 2 2013-01-01 Female     68.9
+ 3 2013-02-01 Male       82.7
+ 4 2013-02-01 Female     69.0
+ 5 2013-03-01 Male       82.7
+ 6 2013-03-01 Female     69.0
+ 7 2013-04-01 Male       82.7
+ 8 2013-04-01 Female     69.1
+ 9 2013-05-01 Male       83.1
+10 2013-05-01 Female     69.4
+# … with 226 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>female_householder</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/OFHHFH.csv'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>female_householder</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>female_householder</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>female_householder</span> <span class='op'>&lt;-</span> <span class='va'>female_householder</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"female_householder"</span> <span class='op'>=</span> <span class='va'>OFHHFH</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>female_householder</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>female_householder</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>Rows: 10
+Columns: 2
+$ Date               &lt;date&gt; 2013-01-01, 2014-01-01, 2015-01-01, 2016…
+$ female_householder &lt;dbl&gt; 15469, 15420, 15544, 15622, 15572, 15423,…</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>female_householder</span></span></code></pre>
+</div>
+<pre><code>         Date female_householder
+1  2013-01-01              15469
+2  2014-01-01              15420
+3  2015-01-01              15544
+4  2016-01-01              15622
+5  2017-01-01              15572
+6  2018-01-01              15423
+7  2019-01-01              15043
+8  2020-01-01              14832
+9  2021-01-01              15461
+10 2022-01-01              15618</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>male_householder</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/OFHHMH.csv'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>male_householder</span><span class='op'>$</span><span class='va'>Date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>male_householder</span><span class='op'>$</span><span class='va'>DATE</span><span class='op'>)</span> </span>
+<span><span class='va'>male_householder</span> <span class='op'>&lt;-</span> <span class='va'>male_householder</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"male_householder"</span> <span class='op'>=</span> <span class='va'>OFHHMH</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Date</span>, <span class='va'>male_householder</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>male_householder</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>Rows: 10
+Columns: 2
+$ Date             &lt;date&gt; 2013-01-01, 2014-01-01, 2015-01-01, 2016-0…
+$ male_householder &lt;dbl&gt; 6229, 6304, 6162, 6310, 6452, 6424, 6480, 6…</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>male_householder</span></span></code></pre>
+</div>
+<pre><code>         Date male_householder
+1  2013-01-01             6229
+2  2014-01-01             6304
+3  2015-01-01             6162
+4  2016-01-01             6310
+5  2017-01-01             6452
+6  2018-01-01             6424
+7  2019-01-01             6480
+8  2020-01-01             6503
+9  2021-01-01             6963
+10 2022-01-01             7212</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>house_holder</span> <span class='op'>&lt;-</span> <span class='va'>male_householder</span><span class='op'>|&gt;</span></span>
+<span>            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>female_householder</span>, by<span class='op'>=</span><span class='st'>'Date'</span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='va'>house_holder</span> <span class='op'>&lt;-</span> <span class='va'>house_holder</span><span class='op'>|&gt;</span></span>
+<span>        <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span></span>
+<span>          cols <span class='op'>=</span> <span class='va'>male_householder</span><span class='op'>:</span><span class='va'>female_householder</span>,</span>
+<span>          names_to <span class='op'>=</span> <span class='st'>"Gender"</span>,</span>
+<span>    values_to <span class='op'>=</span> <span class='st'>"house_holder"</span></span>
+<span>  <span class='op'>)</span><span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Gender <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>Gender</span> <span class='op'>==</span> <span class='st'>"male_householder"</span>, <span class='st'>"Male"</span>, <span class='st'>"Female"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>house_holder</span></span></code></pre>
+</div>
+<pre><code># A tibble: 20 × 3
+   Date       Gender house_holder
+   &lt;date&gt;     &lt;chr&gt;         &lt;dbl&gt;
+ 1 2013-01-01 Male           6229
+ 2 2013-01-01 Female        15469
+ 3 2014-01-01 Male           6304
+ 4 2014-01-01 Female        15420
+ 5 2015-01-01 Male           6162
+ 6 2015-01-01 Female        15544
+ 7 2016-01-01 Male           6310
+ 8 2016-01-01 Female        15622
+ 9 2017-01-01 Male           6452
+10 2017-01-01 Female        15572
+11 2018-01-01 Male           6424
+12 2018-01-01 Female        15423
+13 2019-01-01 Male           6480
+14 2019-01-01 Female        15043
+15 2020-01-01 Male           6503
+16 2020-01-01 Female        14832
+17 2021-01-01 Male           6963
+18 2021-01-01 Female        15461
+19 2022-01-01 Male           7212
+20 2022-01-01 Female        15618</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wages</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>wages</span>,<span class='va'>emp_rate</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Date'</span><span class='op'>=</span><span class='st'>'Date'</span>, <span class='st'>'Gender'</span><span class='op'>=</span><span class='st'>'Gender'</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>wages</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>wages</span>,<span class='va'>house_holder</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Date'</span><span class='op'>=</span><span class='st'>'Date'</span>, <span class='st'>'Gender'</span><span class='op'>=</span><span class='st'>'Gender'</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>wages</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>Rows: 78
+Columns: 5
+$ Date         &lt;date&gt; 2013-01-01, 2013-01-01, 2013-04-01, 2013-04-01…
+$ Gender       &lt;chr&gt; &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Fe…
+$ Wage         &lt;int&gt; 860, 699, 863, 706, 855, 705, 865, 712, 865, 71…
+$ emp_rate     &lt;dbl&gt; 82.58338, 68.86507, 82.74347, 69.10345, 82.9516…
+$ house_holder &lt;dbl&gt; 6229, 15469, NA, NA, NA, NA, NA, NA, 6304, 1542…</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wages</span></span></code></pre>
+</div>
+<pre><code># A tibble: 78 × 5
+   Date       Gender  Wage emp_rate house_holder
+   &lt;date&gt;     &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;        &lt;dbl&gt;
+ 1 2013-01-01 Male     860     82.6         6229
+ 2 2013-01-01 Female   699     68.9        15469
+ 3 2013-04-01 Male     863     82.7           NA
+ 4 2013-04-01 Female   706     69.1           NA
+ 5 2013-07-01 Male     855     83.0           NA
+ 6 2013-07-01 Female   705     69.5           NA
+ 7 2013-10-01 Male     865     82.4           NA
+ 8 2013-10-01 Female   712     69.1           NA
+ 9 2014-01-01 Male     865     83.2         6304
+10 2014-01-01 Female   716     69.8        15420
+# … with 68 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>est_ate</span> <span class='op'>&lt;-</span>  <span class='va'>wages</span> <span class='op'>|&gt;</span></span>
+<span>       <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>Wage</span> <span class='op'>~</span> <span class='va'>Gender</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>      <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in means"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Male"</span>, <span class='st'>"Female"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>est_ate</span></span></code></pre>
+</div>
+<pre><code>Response: Wage (numeric)
+Explanatory: Gender (factor)
+# A tibble: 1 × 1
+   stat
+  &lt;dbl&gt;
+1  174.</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>null_dist_wage_diff</span> <span class='op'>&lt;-</span> <span class='va'>wages</span> <span class='op'>|&gt;</span></span>
+<span>                    <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>Wage</span> <span class='op'>~</span> <span class='va'>Gender</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>                    <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>                    <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"permute"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>                    <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in means"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Male"</span>, <span class='st'>"Female"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>ate_pval</span> <span class='op'>&lt;-</span> <span class='va'>null_dist_wage_diff</span> <span class='op'>|&gt;</span></span>
+<span><span class='fu'><a href='https://infer.tidymodels.org/reference/get_p_value.html'>get_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>est_ate</span>, direction <span class='op'>=</span> <span class='st'>"right"</span><span class='op'>)</span></span>
+<span><span class='va'>ate_pval</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1       0</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>null_dist_wage_diff</span> <span class='op'>|&gt;</span></span>
+<span><span class='fu'><a href='https://infer.tidymodels.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span><span class='fu'><a href='https://infer.tidymodels.org/reference/shade_p_value.html'>shade_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>est_ate</span>, direction <span class='op'>=</span> <span class='st'>"right"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-36-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wages.multreg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Wage</span> <span class='op'>~</span>  <span class='va'>Gender</span> <span class='op'>+</span> <span class='va'>emp_rate</span> <span class='op'>+</span> <span class='va'>house_holder</span>, data <span class='op'>=</span> <span class='va'>wages</span><span class='op'>)</span> </span>
+<span></span>
+<span><span class='va'>wages.multreg</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = Wage ~ Gender + emp_rate + house_holder, data = wages)
+
+Coefficients:
+ (Intercept)    GenderMale      emp_rate  house_holder  
+  -4661.0622     1404.3822       35.2415        0.1905  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>wages.multreg</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>digits <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span></span></code></pre>
 </div>
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: right;">Year</th>
-<th style="text-align: right;">CPI</th>
-<th style="text-align: right;">Percent_Change_CPI</th>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">306.734</td>
-<td style="text-align: right;">NA</td>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+-4661.062
+</td>
+<td style="text-align:right;">
+1045.944
+</td>
+<td style="text-align:right;">
+-4.456
+</td>
+<td style="text-align:right;">
+0.000
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">2014</td>
-<td style="text-align: right;">308.400</td>
-<td style="text-align: right;">0.5431416</td>
+<tr>
+<td style="text-align:left;">
+GenderMale
+</td>
+<td style="text-align:right;">
+1404.382
+</td>
+<td style="text-align:right;">
+394.060
+</td>
+<td style="text-align:right;">
+3.564
+</td>
+<td style="text-align:right;">
+0.003
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: right;">2015</td>
-<td style="text-align: right;">199.553</td>
-<td style="text-align: right;">-35.2940986</td>
+<tr>
+<td style="text-align:left;">
+emp_rate
+</td>
+<td style="text-align:right;">
+35.242
+</td>
+<td style="text-align:right;">
+8.275
+</td>
+<td style="text-align:right;">
+4.259
+</td>
+<td style="text-align:right;">
+0.001
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">2016</td>
-<td style="text-align: right;">181.445</td>
-<td style="text-align: right;">-9.0742810</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2017</td>
-<td style="text-align: right;">217.892</td>
-<td style="text-align: right;">20.0870787</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2018</td>
-<td style="text-align: right;">235.641</td>
-<td style="text-align: right;">8.1457786</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2019</td>
-<td style="text-align: right;">210.752</td>
-<td style="text-align: right;">-10.5622536</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2020</td>
-<td style="text-align: right;">236.591</td>
-<td style="text-align: right;">12.2603819</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2021</td>
-<td style="text-align: right;">215.529</td>
-<td style="text-align: right;">-8.9022828</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2022</td>
-<td style="text-align: right;">301.791</td>
-<td style="text-align: right;">40.0233843</td>
+<tr>
+<td style="text-align:left;">
+house_holder
+</td>
+<td style="text-align:right;">
+0.190
+</td>
+<td style="text-align:right;">
+0.046
+</td>
+<td style="text-align:right;">
+4.131
+</td>
+<td style="text-align:right;">
+0.001
+</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"%Y"</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>perc_chng_gasoline</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>, y <span class='op'>=</span> <span class='va'>perc_inc</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Year"</span>, y <span class='op'>=</span> <span class='st'>"Percent Change in CPI"</span>, title <span class='op'>=</span> <span class='st'>"12-month percent change in CPI for gasoline, Jan. 2013 - Jan. 2022"</span><span class='op'>)</span> </span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>wages.multreg</span>, gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-20-1.png" width="624" /></p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+−4661.062
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(1045.944)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GenderMale
+</td>
+<td style="text-align:center;">
+1404.382
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(394.060)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+emp_rate
+</td>
+<td style="text-align:center;">
+35.242
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(8.275)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+house_holder
+</td>
+<td style="text-align:center;">
+0.190
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.046)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.827
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.794
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>In the above table I have calculated 12-month percent change in CPI for gasoline. The line plot is also obtained. We can see that CPI decreased in 2016, 2020 and 2022. But the CPI is increasing towards the end of 2022.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
