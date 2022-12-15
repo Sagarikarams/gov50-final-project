@@ -7,9 +7,6 @@ output:
     self_contained: false
 ---
 
-
-
-## Project thoughts
 I want to explore the USA Bureau of Labor Statistics (BLS) data. I will be analyzing different trends and patterns that exist in the data. Is inflation increasing faster than wage growth? If it is true, it would be difficult for lower-income households to meet their daily needs.
 
 My hypothesis is inflation is increasing faster than wage growth. The prices of most of the products/services have increased. We always hear people complain about how their spending power has decreased significantly. We can now check if it is true. 
