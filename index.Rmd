@@ -1,7 +1,7 @@
 ---
-title: "Exploring USA Bureau of Labor Statistics"
+title: "Is inflation increasing faster than Wage growth? Is gender wage gap real?"
 author: "Sagarika Ramesh"
-description: "Exploring how the inflation has affected different industries, unemployment and wage growth"
+description: "Exploring the USA Bureau of Labor Statistics (BLS) data to see if inflation is increasing faster than wage growth and if the gender wage gap is real."
 output:
   distill::distill_article:
     self_contained: false
@@ -10,11 +10,35 @@ output:
 
 
 ## Project thoughts
-I want to explore the USA Bureau of Labor Statistics (BLS) data. I will be analyzing different trends and patterns that exist in the data. Is inflation increasing faster than wage growth? If it is true, it would be difficult for lower-income households to meet their daily needs. The number of working hours, marital status, race, gender, labor productivity, and other factors could affect wage growth. We can also inspect how the COVID-19 pandemic has affected wage growth. The Consumer Price Index (CPI) is a statistical measure of change, over time, of the prices of goods and services in major expenditure groups(such as food, housing, apparel, transportation, and medical care)typically purchased by urban consumers. The Current Employment Statistics (CES) program produces detailed industry estimates of non-farm employment, hours, and earnings of workers on the payroll. 
-My hypothesis is inflation is increasing faster than wage growth. The prices of most of the items have increased. We always hear people complain about how their spending power has decreased significantly. We can now check if it is true. 
-Dataset is obtained from  https://www.bls.gov/cpi/ and https://www.bls.gov/ces/
-My sample consists of revised seasonally adjusted Consumer Price Index and factors for All Urban Consumers during 2017-2021, average weekly earnings of all employees in different industries, and the cities in which they reside. My outcome variable measures wage growth. The monthly changes in the prices and wages are measured. This is used to calculate inflation and wage growth. I will use a regression analysis to examine the relationship between these two variables. A negative relationship between the two variables shows that they are not positively correlated, which means wages are not increasing with the increase in inflation.
-Hence a negative relationship between the two variables would provide support for my hypothesis, and a positive relationship between the two variables would disprove my hypothesis.
+I want to explore the USA Bureau of Labor Statistics (BLS) data. I will be analyzing different trends and patterns that exist in the data. Is inflation increasing faster than wage growth? If it is true, it would be difficult for lower-income households to meet their daily needs.
+
+My hypothesis is inflation is increasing faster than wage growth. The prices of most of the products/services have increased. We always hear people complain about how their spending power has decreased significantly. We can now check if it is true. 
+Dataset is obtained from  https://www.bls.gov/
+
+My sample consists of following variables:  
+1. Consumer Price Index for All Urban Consumers(CPI): All Items in U.S. City Average. It is a measure of the average change over time in the prices paid by urban consumers for a market basket of consumer goods and services.    
+2. Employment Cost Index(ECI). It essentially measures the change in total employee compensation each quarter.  
+3. Difference between CPI growth and ECI growth. It measures the difference between CPI growth and ECI growth. CPI change measures the increase or decrease in the index from the previous year. ECI change measures the increase or decrease in the index from the previous year.  
+4. Employment Rate.  
+5. Government Current Expenditures. It consists of spending by government to produce and provide services to the public, such as national defense and public school education.  
+6. Personal consumption expenditures (PCE). It is the primary measure of consumer spending on goods and services in the U.S. economy.  
+7. Corporate Profits After Tax. It represents the portion of the total income earned from current
+production that is accounted for by U.S. corporations.
+
+My outcome variable/Dependent variable: Difference between CPI change and ECI change. 
+I have constructed a hypothesis test to check my hypothesis. Research design: Before-and-after design. As I compare the outcomes each year, take the difference between the outcomes. 
+Further, I will use regression analysis to examine the relationship between my dependent variable and independent variables. 
+
+I am interested to test another hypothesis: Is gender wage gap real? In other words, do men earn more wages than women? I will be analyzing this as it is important to address inequality. 
+Dataset is obtained from  https://www.bls.gov/ 
+
+My sample consists of following variables:  
+1. Median weekly earnings of Men and Women.    
+2. Employment Rate of Men and Women.  
+3. Family Households with Male/Female Householder.  
+
+My outcome/dependent variable is Median weekly earnings of Men and Women. I have constructed a hypothesis test to check my hypothesis. Research design: Before-and-after design. As I compare the outcomes each year, take the difference between the outcomes.  
+Further, I will use regression analysis to examine the relationship between my dependent variable and independent variables.
 
 ```{r}
 library(blscrapeR)
@@ -47,6 +71,8 @@ glimpse(cpi_all_items)
 head(cpi_all_items)
 ```
 
+CPI_change measures the increase or decrease in the index from the previous year
+
 ```{r}
 eci_all  <- read.csv('data/ECIWAG.csv')
 
@@ -61,6 +87,7 @@ glimpse(eci_all)
 head(eci_all)
 ```
 
+eci_change measures the increase or decrease in the index from the previous year. 
 
 ```{r}
 cpi_eci <- cpi_all_items |>
@@ -71,6 +98,8 @@ cpi_eci$diff_btw_cpi_eci <- cpi_eci$CPI_change - cpi_eci$eci_change
 
 head(cpi_eci)
 ```
+diff_btw_cpi_eci is the difference between CPI_change and eci_change. It measures the difference between CPI growth and ECI growth. 
+
 ```{r}
 ggplot(data = cpi_eci, mapping = aes(y = CPI_change, x = eci_change)) + geom_point(color = "purple") + geom_smooth(method = "loess")+
   labs(
@@ -87,6 +116,7 @@ ggplot(data = cpi_eci, mapping = aes(y = CPI_change, x = eci_change)) + geom_poi
 ```{r}
 ggplot(cpi_eci, aes(x = Date, y = diff_btw_cpi_eci)) + geom_line() + labs(x = "Date", y = "Difference between CPI and ECI", title = "Difference between CPI and ECI over a period of 10 years")
 ```
+The independent variables(employment rate, Government Current Expenditures, Personal Consumption Expenditures, Corporate Profits After Tax) are added to the same data set.
 
 ```{r}
 employment_rate <- read.csv('data/LREM64TTUSM156S.csv')
@@ -157,16 +187,16 @@ head(finance_data)
 ```
 
 ```{r}
-ggplot(data = finance_data, aes(x = emp_rate, y = diff_btw_cpi_eci)) + geom_point(color = "purple") +labs(x = "Employment Rate", y = "Difference between CPI and ECI", title = " Employment Rate vs Difference between CPI and ECI")
+ggplot(data = finance_data, aes(x = emp_rate, y = diff_btw_cpi_eci)) + geom_point(color = "purple") +labs(x = "Employment Rate", y = "Difference between CPI and ECI growth", title = " Employment Rate vs Difference between CPI and ECI growth")
 ```
 ```{r}
-ggplot(data = finance_data, aes(x = gov_cur_expend, y = diff_btw_cpi_eci)) + geom_point(color = "purple")+labs(x = "Government Current Expenditures", y = "Difference between CPI and ECI", title = "Government Current Expenditures vs Difference between CPI and ECI")
+ggplot(data = finance_data, aes(x = gov_cur_expend, y = diff_btw_cpi_eci)) + geom_point(color = "purple")+labs(x = "Government Current Expenditures", y = "Difference between CPI and ECI growth", title = "Government Current Expenditures vs Difference between CPI and ECI growth")
 ```
 ```{r}
-ggplot(data = finance_data, aes(x = pce, y = diff_btw_cpi_eci)) + geom_point(color = "purple") + labs(x = "Personal Consumption Expenditures", y = "Difference between CPI and ECI", title = "Personal Consumption Expenditures vs Difference between CPI and ECI")
+ggplot(data = finance_data, aes(x = pce, y = diff_btw_cpi_eci)) + geom_point(color = "purple") + labs(x = "Personal Consumption Expenditures", y = "Difference between CPI and ECI growth", title = "Personal Consumption Expenditures vs Difference between CPI and ECI growth")
 ```
 ```{r}
-ggplot(data = finance_data, aes(x = corp_profit, y = diff_btw_cpi_eci)) + geom_point(color = "purple") + labs(x = "Corporate Profits after Tax", y = "Difference between CPI and ECI", title = "Corporate Profits vs Difference between CPI and ECI")
+ggplot(data = finance_data, aes(x = corp_profit, y = diff_btw_cpi_eci)) + geom_point(color = "purple") + labs(x = "Corporate Profits after Tax", y = "Difference between CPI and ECI growth", title = "Corporate Profits vs Difference between CPI and ECI growth")
 ```
 
 
@@ -174,6 +204,12 @@ ggplot(data = finance_data, aes(x = corp_profit, y = diff_btw_cpi_eci)) + geom_p
 observed_mean = mean(finance_data$diff_btw_cpi_eci, na.rm = TRUE)
 observed_mean
 ```
+On average the CPI increases by 0.66 points more than ECI.  
+
+Hypothesis Testing:  
+Null Hypothesis: Average difference between CPI growth and ECI growth is 0. Mean(diff_btw_cpi_eci) is 0.  
+Alternate Hypothesis: Average difference between CPI growth and ECI growth is more than 0. Mean(diff_btw_cpi_eci) is more than 0.  
+
 
 ```{r}
 set.seed(7890)
@@ -196,8 +232,10 @@ visualize(null_dist) +
 null_dist|> 
   get_p_value(obs_stat = observed_mean, direction = "right")
 ```
+The probability of observing a difference between CPI growth and ECI growth as large as 0.66 points due to sampling variation alone in the null distribution is 0.005 = 0.5%. 
+Since this p_value is smaller than our significance level of 0.05. We reject the null hypothesis. We have enough evidence to say CPI growth is faster than ECI growth. In other words, inflation is increasing faster than Wage growth. 
 
-
+Multiple regression: 
 ```{r}
 finance_data.multreg <- lm(diff_btw_cpi_eci ~  emp_rate + gov_cur_expend + pce + corp_profit, data = finance_data) 
 
@@ -206,8 +244,21 @@ tidy(finance_data.multreg) |> knitr::kable(digits = 3)
 ```
 
 ```{r}
-modelsummary::modelsummary(finance_data.multreg, gof_map = c("nobs", "r.squared", "adj.r.squared"))
+modelsummary::modelsummary(finance_data.multreg, statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"), gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
+The coefficient of emp_rate is -0.663, which means there is a decrease in the Difference between CPI growth and ECI growth(outcome) by 0.663 points with a one-unit increase in employment rate, when other variables don’t change.
+
+The coefficient of gov_cur_expend is -0.002, which means there is a decrease in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit increase in Government Current Expenditures, when other variables don’t change.
+
+The coefficient of pce is 0.002, which means there is an increase in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit increase in Personal Consumption Expenditures, when other variables don’t change.
+
+The coefficient of corp_profit is 0.002, which means there is an increase in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit increase in Corporate Profits, when other variables don’t change.
+
+The estimated coefficient of emp_rate is statistically significant at the 0.05 level because the p-value 0.006, which is less than 0.05.
+The estimated coefficient of pce is statistically significant at the 0.05 level because the p-value is less than 0.05.  
+The estimated coefficient of gov_cur_expend	 is statistically significant at the 0.05 level because the p-value is less than 0.05.
+The estimated coefficient of corp_profit is not statistically significant at the 0.05 level because the p-value 0.381, which is more than 0.05.
 
 ```{r}
 totalwage_weekly <- read.csv("data/LES1252881500Q.csv")
@@ -377,6 +428,16 @@ wages <-left_join(wages,house_holder, by = c('Date'='Date', 'Gender'='Gender'))
 glimpse(wages)
 wages
 ```
+```{r}
+ggplot(data = wages, mapping = aes(x=Gender, y =emp_rate)) +
+geom_boxplot(na.rm = TRUE)+ labs(x = "Gender", y = "Employment Rare", title = "Gender vs Employment Rate")
+
+```
+```{r}
+ggplot(data = wages, mapping = aes(x=Gender, y =Wage)) +
+geom_boxplot(na.rm = TRUE)+ labs(x = "Gender", y = "Wage", title = "Gender vs Wage")
+
+```
 
 
 ```{r}
@@ -385,6 +446,8 @@ est_ate <-  wages |>
       calculate(stat = "diff in means", order = c("Male", "Female"))
 est_ate
 ```
+
+
 
 ```{r}
 null_dist_wage_diff <- wages |>
