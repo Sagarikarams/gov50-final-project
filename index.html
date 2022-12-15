@@ -1522,11 +1522,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="project-thoughts">Project thoughts</h2>
 <p>I want to explore the USA Bureau of Labor Statistics (BLS) data. I will be analyzing different trends and patterns that exist in the data. Is inflation increasing faster than wage growth? If it is true, it would be difficult for lower-income households to meet their daily needs.</p>
 <p>My hypothesis is inflation is increasing faster than wage growth. The prices of most of the products/services have increased. We always hear people complain about how their spending power has decreased significantly. We can now check if it is true.
-Dataset is obtained from <a href="https://www.bls.gov/" class="uri">https://www.bls.gov/</a>
-My sample consists of following variables:
-1. Consumer Price Index for All Urban Consumers: All Items in U.S. City Average</p>
-<p>. My outcome variable measures wage growth. The monthly changes in the prices and wages are measured. This is used to calculate inflation and wage growth. I will use a regression analysis to examine the relationship between these two variables. A negative relationship between the two variables shows that they are not positively correlated, which means wages are not increasing with the increase in inflation.
-Hence a negative relationship between the two variables would provide support for my hypothesis, and a positive relationship between the two variables would disprove my hypothesis.</p>
+Dataset is obtained from <a href="https://www.bls.gov/" class="uri">https://www.bls.gov/</a></p>
+<p>My sample consists of following variables:<br />
+1. Consumer Price Index for All Urban Consumers(CPI): All Items in U.S. City Average. It is a measure of the average change over time in the prices paid by urban consumers for a market basket of consumer goods and services.<br />
+2. Employment Cost Index(ECI). It essentially measures the change in total employee compensation each quarter.<br />
+3. Difference between CPI growth and ECI growth. It measures the difference between CPI growth and ECI growth. CPI change measures the increase or decrease in the index from the previous year. ECI change measures the increase or decrease in the index from the previous year.<br />
+4. Employment Rate.<br />
+5. Government Current Expenditures. It consists of spending by government to produce and provide services to the public, such as national defense and public school education.<br />
+6. Personal consumption expenditures (PCE). It is the primary measure of consumer spending on goods and services in the U.S. economy.<br />
+7. Corporate Profits After Tax. It represents the portion of the total income earned from current
+production that is accounted for by U.S. corporations.</p>
+<p>My outcome variable/Dependent variable: Difference between CPI change and ECI change.
+I have constructed a hypothesis test to check my hypothesis. Research design: Before-and-after design. As I compare the outcomes each year, take the difference between the outcomes.
+Further, I will use regression analysis to examine the relationship between my dependent variable and independent variables.</p>
+<p>I am interested to test another hypothesis: Is gender wage gap real? In other words, do men earn more wages than women? I will be analyzing this as it is important to address inequality.
+Dataset is obtained from <a href="https://www.bls.gov/" class="uri">https://www.bls.gov/</a></p>
+<p>My sample consists of following variables:<br />
+1. Median weekly earnings of Men and Women.<br />
+2. Employment Rate of Men and Women.<br />
+3. Family Households with Male/Female Householder.</p>
+<p>My outcome/dependent variable is Median weekly earnings of Men and Women. I have constructed a hypothesis test to check my hypothesis. Research design: Before-and-after design. As I compare the outcomes each year, take the difference between the outcomes.<br />
+Further, I will use regression analysis to examine the relationship between my dependent variable and independent variables.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/keberwein/blscrapeR'>blscrapeR</a></span><span class='op'>)</span></span>
@@ -1574,6 +1590,7 @@ $ CPI_change    &lt;dbl&gt; NA, 0.118, 1.103, 0.769, 1.619, 1.180, 1.030, …</c
 5 2014-01-01       235.288      1.619
 6 2014-04-01       236.468      1.180</code></pre>
 </div>
+<p>CPI_change measures the increase or decrease in the index from the previous year</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>eci_all</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/ECIWAG.csv'</span><span class='op'>)</span></span>
@@ -1603,6 +1620,7 @@ $ eci_change &lt;dbl&gt; NA, 0.6, 0.4, 0.7, 0.3, 0.8, 0.9, 0.7, 0.8, 0.2, …</c
 5 2014-01-01 119.4        0.3
 6 2014-04-01 120.2        0.8</code></pre>
 </div>
+<p>eci_change measures the increase or decrease in the index from the previous year.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>cpi_eci</span> <span class='op'>&lt;-</span> <span class='va'>cpi_all_items</span> <span class='op'>|&gt;</span></span>
@@ -1621,6 +1639,7 @@ $ eci_change &lt;dbl&gt; NA, 0.6, 0.4, 0.7, 0.3, 0.8, 0.9, 0.7, 0.8, 0.2, …</c
 5 2014-01-01      1.619        0.3            1.319
 6 2014-04-01      1.180        0.8            0.380</code></pre>
 </div>
+<p>diff_btw_cpi_eci is the difference between CPI_change and eci_change. It measures the difference between CPI growth and ECI growth.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>cpi_eci</span>, mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>CPI_change</span>, x <span class='op'>=</span> <span class='va'>eci_change</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"loess"</span><span class='op'>)</span><span class='op'>+</span></span>
@@ -1641,6 +1660,7 @@ $ eci_change &lt;dbl&gt; NA, 0.6, 0.4, 0.7, 0.3, 0.8, 0.9, 0.7, 0.8, 0.2, …</c
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
+<p>The independent variables(employment rate, Government Current Expenditures, Personal Consumption Expenditures, Corporate Profits After Tax) are added to the same data set.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>employment_rate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>'data/LREM64TTUSM156S.csv'</span><span class='op'>)</span></span>
@@ -1792,25 +1812,25 @@ $ pce              &lt;dbl&gt; 11245.8, 11259.3, 11346.8, 11465.2, 11543.7…</c
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>finance_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>emp_rate</span>, y <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span> <span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Employment Rate"</span>, y <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI"</span>, title <span class='op'>=</span> <span class='st'>" Employment Rate vs Difference between CPI and ECI"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>finance_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>emp_rate</span>, y <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span> <span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Employment Rate"</span>, y <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI growth"</span>, title <span class='op'>=</span> <span class='st'>" Employment Rate vs Difference between CPI and ECI growth"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>finance_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gov_cur_expend</span>, y <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Government Current Expenditures"</span>, y <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI"</span>, title <span class='op'>=</span> <span class='st'>"Government Current Expenditures vs Difference between CPI and ECI"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>finance_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gov_cur_expend</span>, y <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Government Current Expenditures"</span>, y <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI growth"</span>, title <span class='op'>=</span> <span class='st'>"Government Current Expenditures vs Difference between CPI and ECI growth"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>finance_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>pce</span>, y <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Personal Consumption Expenditures"</span>, y <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI"</span>, title <span class='op'>=</span> <span class='st'>"Personal Consumption Expenditures vs Difference between CPI and ECI"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>finance_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>pce</span>, y <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Personal Consumption Expenditures"</span>, y <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI growth"</span>, title <span class='op'>=</span> <span class='st'>"Personal Consumption Expenditures vs Difference between CPI and ECI growth"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>finance_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>corp_profit</span>, y <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Corporate Profits after Tax"</span>, y <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI"</span>, title <span class='op'>=</span> <span class='st'>"Corporate Profits vs Difference between CPI and ECI"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>finance_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>corp_profit</span>, y <span class='op'>=</span> <span class='va'>diff_btw_cpi_eci</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"purple"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Corporate Profits after Tax"</span>, y <span class='op'>=</span> <span class='st'>"Difference between CPI and ECI growth"</span>, title <span class='op'>=</span> <span class='st'>"Corporate Profits vs Difference between CPI and ECI growth"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
 </div>
@@ -1821,6 +1841,10 @@ $ pce              &lt;dbl&gt; 11245.8, 11259.3, 11346.8, 11465.2, 11543.7…</c
 </div>
 <pre><code>[1] 0.6603158</code></pre>
 </div>
+<p>On average the CPI increases by 0.66 points more than ECI.</p>
+<p>Hypothesis Testing:<br />
+Null Hypothesis: Average difference between CPI growth and ECI growth is 0. Mean(diff_btw_cpi_eci) is 0.<br />
+Alternate Hypothesis: Average difference between CPI growth and ECI growth is more than 0. Mean(diff_btw_cpi_eci) is more than 0.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>7890</span><span class='op'>)</span></span>
@@ -1866,6 +1890,9 @@ Null Hypothesis: point
     &lt;dbl&gt;
 1   0.005</code></pre>
 </div>
+<p>The probability of observing a difference between CPI growth and ECI growth as large as 0.66 points due to sampling variation alone in the null distribution is 0.005 = 0.5%.
+Since this p_value is smaller than our significance level of 0.05. We reject the null hypothesis. We have enough evidence to say CPI growth is faster than ECI growth. In other words, inflation is increasing faster than Wage growth.</p>
+Multiple regression:
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>finance_data.multreg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>diff_btw_cpi_eci</span> <span class='op'>~</span>  <span class='va'>emp_rate</span> <span class='op'>+</span> <span class='va'>gov_cur_expend</span> <span class='op'>+</span> <span class='va'>pce</span> <span class='op'>+</span> <span class='va'>corp_profit</span>, data <span class='op'>=</span> <span class='va'>finance_data</span><span class='op'>)</span> </span>
@@ -1936,7 +1963,8 @@ Coefficients:
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>finance_data.multreg</span>, gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>finance_data.multreg</span>, statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>, gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -1961,7 +1989,14 @@ Model 1
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(13.734)
+s.e. = 13.734
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.029
 </td>
 </tr>
 <tr>
@@ -1976,7 +2011,14 @@ emp_rate
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(0.227)
+s.e. = 0.227
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.006
 </td>
 </tr>
 <tr>
@@ -1991,7 +2033,14 @@ gov_cur_expend
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(0.0004)
+s.e. = 0.0004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.001
 </td>
 </tr>
 <tr>
@@ -2006,7 +2055,14 @@ pce
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(0.0005)
+s.e. = 0.0005
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.003
 </td>
 </tr>
 <tr>
@@ -2018,10 +2074,17 @@ corp_profit
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.002
+</td>
+</tr>
+<tr>
 <td style="text-align:left;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.002)
+p = 0.381
 </td>
 </tr>
 <tr>
@@ -2051,6 +2114,16 @@ R2 Adj.
 </tbody>
 </table>
 </div>
+<p>The coefficient of emp_rate is -0.663, which means there is a decrease in the Difference between CPI growth and ECI growth(outcome) by 0.663 points with a 1% increase in employment rate, when other variables don’t change.</p>
+<p>The coefficient of gov_cur_expend is -0.002, which means there is a decrease in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit(1 billion dollars) increase in Government Current Expenditures, when other variables don’t change.</p>
+<p>The coefficient of pce is 0.002, which means there is an increase in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit(1 billion dollars) increase in Personal Consumption Expenditures, when other variables don’t change.</p>
+<p>The coefficient of corp_profit is 0.002, which means there is an increase in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit(1 billion dollars) increase in Corporate Profits, when other variables don’t change.</p>
+<p>The estimated coefficient of emp_rate is statistically significant at the 0.05 level because the p-value 0.006, which is less than 0.05.
+The estimated coefficient of pce is statistically significant at the 0.05 level because the p-value is less than 0.05.<br />
+The estimated coefficient of gov_cur_expend is statistically significant at the 0.05 level because the p-value is less than 0.05.
+The estimated coefficient of corp_profit is not statistically significant at the 0.05 level because the p-value 0.381, which is more than 0.05.</p>
+Now, lets start another interesting hypothesis.<br />
+Is gender wage gap real?
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>totalwage_weekly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/LES1252881500Q.csv"</span><span class='op'>)</span></span>
@@ -2067,15 +2140,15 @@ Columns: 2
 $ Date       &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01, …
 $ tt_wk_wage &lt;int&gt; 768, 777, 779, 782, 790, 781, 798, 795, 802, 803,…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>totalwage_weekly</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>totalwage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date tt_wk_wage
-34 2021-04-01        996
-35 2021-07-01       1003
-36 2021-10-01       1008
-37 2022-01-01       1030
-38 2022-04-01       1045
-39 2022-07-01       1068</code></pre>
+<pre><code>        Date tt_wk_wage
+1 2013-01-01        768
+2 2013-04-01        777
+3 2013-07-01        779
+4 2013-10-01        782
+5 2014-01-01        790
+6 2014-04-01        781</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2099,15 +2172,15 @@ Columns: 2
 $ Date         &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-01…
 $ male_wk_wage &lt;int&gt; 860, 863, 855, 865, 865, 860, 878, 878, 886, 89…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>malewage_weekly</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>malewage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date male_wk_wage
-34 2021-04-01         1098
-35 2021-07-01         1108
-36 2021-10-01         1100
-37 2022-01-01         1118
-38 2022-04-01         1148
-39 2022-07-01         1166</code></pre>
+<pre><code>        Date male_wk_wage
+1 2013-01-01          860
+2 2013-04-01          863
+3 2013-07-01          855
+4 2013-10-01          865
+5 2014-01-01          865
+6 2014-04-01          860</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2131,15 +2204,15 @@ Columns: 2
 $ Date           &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-…
 $ female_wk_wage &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, …</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>femalewage_weekly</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>femalewage_weekly</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date female_wk_wage
-34 2021-04-01            905
-35 2021-07-01            915
-36 2021-10-01            928
-37 2022-01-01            937
-38 2022-04-01            949
-39 2022-07-01            968</code></pre>
+<pre><code>        Date female_wk_wage
+1 2013-01-01            699
+2 2013-04-01            706
+3 2013-07-01            705
+4 2013-10-01            712
+5 2014-01-01            716
+6 2014-04-01            715</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2154,48 +2227,24 @@ $ female_wk_wage &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, …</c
 <span></span>
 <span><span class='va'>wages</span> <span class='op'>&lt;-</span> <span class='va'>wages</span> <span class='op'>|&gt;</span></span>
 <span>        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>femalewage_weekly</span>, by <span class='op'>=</span> <span class='st'>'Date'</span><span class='op'>)</span></span>
-<span><span class='va'>wages</span></span></code></pre>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>wages</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date tt_wk_wage male_wk_wage female_wk_wage
-1  2013-01-01        768          860            699
-2  2013-04-01        777          863            706
-3  2013-07-01        779          855            705
-4  2013-10-01        782          865            712
-5  2014-01-01        790          865            716
-6  2014-04-01        781          860            715
-7  2014-07-01        798          878            721
-8  2014-10-01        795          878            724
-9  2015-01-01        802          886            725
-10 2015-04-01        803          890            725
-11 2015-07-01        809          896            727
-12 2015-10-01        821          904            729
-13 2016-01-01        823          904            744
-14 2016-04-01        828          913            746
-15 2016-07-01        834          918            748
-16 2016-10-01        845          924            759
-17 2017-01-01        858          941            760
-18 2017-04-01        863          937            782
-19 2017-07-01        864          944            769
-20 2017-10-01        854          943            770
-21 2018-01-01        875          956            778
-22 2018-04-01        881          963            783
-23 2018-07-01        891          980            796
-24 2018-10-01        897          991            795
-25 2019-01-01        899          994            803
-26 2019-04-01        913         1004            818
-27 2019-07-01        922         1010            825
-28 2019-10-01        934         1020            842
-29 2020-01-01        951         1056            853
-30 2020-04-01       1008         1091            919
-31 2020-07-01        996         1112            901
-32 2020-10-01        982         1069            894
-33 2021-01-01        983         1079            897
-34 2021-04-01        996         1098            905
-35 2021-07-01       1003         1108            915
-36 2021-10-01       1008         1100            928
-37 2022-01-01       1030         1118            937
-38 2022-04-01       1045         1148            949
-39 2022-07-01       1068         1166            968</code></pre>
+<pre><code>Rows: 39
+Columns: 4
+$ Date           &lt;date&gt; 2013-01-01, 2013-04-01, 2013-07-01, 2013-10-…
+$ tt_wk_wage     &lt;int&gt; 768, 777, 779, 782, 790, 781, 798, 795, 802, …
+$ male_wk_wage   &lt;int&gt; 860, 863, 855, 865, 865, 860, 878, 878, 886, …
+$ female_wk_wage &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, …</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>wages</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>        Date tt_wk_wage male_wk_wage female_wk_wage
+1 2013-01-01        768          860            699
+2 2013-04-01        777          863            706
+3 2013-07-01        779          855            705
+4 2013-10-01        782          865            712
+5 2014-01-01        790          865            716
+6 2014-04-01        781          860            715</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2224,22 +2273,17 @@ $ female_wk_wage &lt;int&gt; 699, 706, 705, 712, 716, 715, 721, 724, 725, …</c
 <span>  <span class='op'>)</span><span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Gender <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>Gender</span> <span class='op'>==</span> <span class='st'>"male_wk_wage"</span>, <span class='st'>"Male"</span>, <span class='st'>"Female"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>tt_wk_wage</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>wages</span></span></code></pre>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>wages</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 78 × 3
-   Date       Gender  Wage
-   &lt;date&gt;     &lt;chr&gt;  &lt;int&gt;
- 1 2013-01-01 Male     860
- 2 2013-01-01 Female   699
- 3 2013-04-01 Male     863
- 4 2013-04-01 Female   706
- 5 2013-07-01 Male     855
- 6 2013-07-01 Female   705
- 7 2013-10-01 Male     865
- 8 2013-10-01 Female   712
- 9 2014-01-01 Male     865
-10 2014-01-01 Female   716
-# … with 68 more rows</code></pre>
+<pre><code># A tibble: 6 × 3
+  Date       Gender  Wage
+  &lt;date&gt;     &lt;chr&gt;  &lt;int&gt;
+1 2013-01-01 Male     860
+2 2013-01-01 Female   699
+3 2013-04-01 Male     863
+4 2013-04-01 Female   706
+5 2013-07-01 Male     855
+6 2013-07-01 Female   705</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2257,127 +2301,15 @@ Columns: 2
 $ Date            &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04…
 $ emp_rate_female &lt;dbl&gt; 68.86507, 68.97191, 68.96808, 69.10345, 69.3…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>emp_rate_female</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>emp_rate_female</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>          Date emp_rate_female
-1   2013-01-01        68.86507
-2   2013-02-01        68.97191
-3   2013-03-01        68.96808
-4   2013-04-01        69.10345
-5   2013-05-01        69.37194
-6   2013-06-01        69.16663
-7   2013-07-01        69.52443
-8   2013-08-01        69.64619
-9   2013-09-01        69.68034
-10  2013-10-01        69.08798
-11  2013-11-01        69.25314
-12  2013-12-01        69.39848
-13  2014-01-01        69.82815
-14  2014-02-01        70.02622
-15  2014-03-01        69.79737
-16  2014-04-01        69.89145
-17  2014-05-01        69.87947
-18  2014-06-01        70.13558
-19  2014-07-01        69.82265
-20  2014-08-01        70.13146
-21  2014-09-01        69.92525
-22  2014-10-01        70.13322
-23  2014-11-01        70.20206
-24  2014-12-01        70.15185
-25  2015-01-01        70.20106
-26  2015-02-01        70.25596
-27  2015-03-01        69.97244
-28  2015-04-01        70.20660
-29  2015-05-01        70.47730
-30  2015-06-01        70.44313
-31  2015-07-01        70.17364
-32  2015-08-01        70.30378
-33  2015-09-01        70.26089
-34  2015-10-01        70.34343
-35  2015-11-01        70.66569
-36  2015-12-01        70.56022
-37  2016-01-01        70.75059
-38  2016-02-01        70.82247
-39  2016-03-01        70.93041
-40  2016-04-01        70.87975
-41  2016-05-01        71.03483
-42  2016-06-01        70.87690
-43  2016-07-01        71.39449
-44  2016-08-01        71.17182
-45  2016-09-01        71.44682
-46  2016-10-01        71.52554
-47  2016-11-01        71.40524
-48  2016-12-01        71.34585
-49  2017-01-01        71.28627
-50  2017-02-01        71.63518
-51  2017-03-01        71.99344
-52  2017-04-01        72.00991
-53  2017-05-01        71.90608
-54  2017-06-01        72.01004
-55  2017-07-01        72.38814
-56  2017-08-01        72.12754
-57  2017-09-01        72.59240
-58  2017-10-01        72.16779
-59  2017-11-01        72.52444
-60  2017-12-01        72.20475
-61  2018-01-01        72.09051
-62  2018-02-01        72.32339
-63  2018-03-01        72.41241
-64  2018-04-01        72.28224
-65  2018-05-01        72.47143
-66  2018-06-01        72.68429
-67  2018-07-01        73.06442
-68  2018-08-01        72.91224
-69  2018-09-01        73.14074
-70  2018-10-01        73.40664
-71  2018-11-01        73.15422
-72  2018-12-01        73.25965
-73  2019-01-01        73.28045
-74  2019-02-01        73.32468
-75  2019-03-01        73.08810
-76  2019-04-01        73.20588
-77  2019-05-01        73.31188
-78  2019-06-01        73.38684
-79  2019-07-01        73.10712
-80  2019-08-01        74.00386
-81  2019-09-01        74.31046
-82  2019-10-01        74.37011
-83  2019-11-01        74.18275
-84  2019-12-01        74.47126
-85  2020-01-01        74.61433
-86  2020-02-01        74.60029
-87  2020-03-01        73.37003
-88  2020-04-01        63.42522
-89  2020-05-01        64.90271
-90  2020-06-01        67.53896
-91  2020-07-01        67.97804
-92  2020-08-01        69.25413
-93  2020-09-01        69.05836
-94  2020-10-01        70.11552
-95  2020-11-01        70.26177
-96  2020-12-01        70.42726
-97  2021-01-01        70.39912
-98  2021-02-01        70.63791
-99  2021-03-01        71.11924
-100 2021-04-01        71.12440
-101 2021-05-01        71.29319
-102 2021-06-01        71.23482
-103 2021-07-01        71.92331
-104 2021-08-01        72.06148
-105 2021-09-01        72.19311
-106 2021-10-01        72.25826
-107 2021-11-01        72.95343
-108 2021-12-01        73.30686
-109 2022-01-01        73.34660
-110 2022-02-01        73.19816
-111 2022-03-01        74.14473
-112 2022-04-01        73.96288
-113 2022-05-01        74.07340
-114 2022-06-01        73.79215
-115 2022-07-01        74.06201
-116 2022-08-01        74.78315
-117 2022-09-01        74.51083
-118 2022-10-01        74.06811</code></pre>
+<pre><code>        Date emp_rate_female
+1 2013-01-01        68.86507
+2 2013-02-01        68.97191
+3 2013-03-01        68.96808
+4 2013-04-01        69.10345
+5 2013-05-01        69.37194
+6 2013-06-01        69.16663</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2395,127 +2327,15 @@ Columns: 2
 $ Date          &lt;date&gt; 2013-01-01, 2013-02-01, 2013-03-01, 2013-04-0…
 $ emp_rate_male &lt;dbl&gt; 82.58338, 82.74719, 82.66598, 82.74347, 83.055…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>emp_rate_male</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>emp_rate_male</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>          Date emp_rate_male
-1   2013-01-01      82.58338
-2   2013-02-01      82.74719
-3   2013-03-01      82.66598
-4   2013-04-01      82.74347
-5   2013-05-01      83.05508
-6   2013-06-01      82.89206
-7   2013-07-01      82.95169
-8   2013-08-01      82.62583
-9   2013-09-01      82.62933
-10  2013-10-01      82.40229
-11  2013-11-01      82.97998
-12  2013-12-01      83.11234
-13  2014-01-01      83.17001
-14  2014-02-01      82.95537
-15  2014-03-01      83.35076
-16  2014-04-01      83.19942
-17  2014-05-01      83.36797
-18  2014-06-01      83.78431
-19  2014-07-01      83.93807
-20  2014-08-01      83.93786
-21  2014-09-01      84.12149
-22  2014-10-01      84.00203
-23  2014-11-01      83.85981
-24  2014-12-01      84.18436
-25  2015-01-01      84.20702
-26  2015-02-01      84.24854
-27  2015-03-01      84.40291
-28  2015-04-01      84.41080
-29  2015-05-01      84.34020
-30  2015-06-01      84.48851
-31  2015-07-01      84.43562
-32  2015-08-01      84.64667
-33  2015-09-01      84.64647
-34  2015-10-01      84.36711
-35  2015-11-01      84.36470
-36  2015-12-01      84.50325
-37  2016-01-01      84.90411
-38  2016-02-01      84.94950
-39  2016-03-01      85.15376
-40  2016-04-01      84.79789
-41  2016-05-01      84.98226
-42  2016-06-01      85.09394
-43  2016-07-01      84.88379
-44  2016-08-01      84.83453
-45  2016-09-01      84.90482
-46  2016-10-01      84.96096
-47  2016-11-01      84.96856
-48  2016-12-01      85.09132
-49  2017-01-01      85.24103
-50  2017-02-01      85.14108
-51  2017-03-01      85.15405
-52  2017-04-01      85.39919
-53  2017-05-01      85.31272
-54  2017-06-01      85.34751
-55  2017-07-01      85.28951
-56  2017-08-01      84.95921
-57  2017-09-01      85.67622
-58  2017-10-01      85.61319
-59  2017-11-01      85.62794
-60  2017-12-01      86.02107
-61  2018-01-01      85.89639
-62  2018-02-01      86.35580
-63  2018-03-01      86.20887
-64  2018-04-01      86.25503
-65  2018-05-01      86.36101
-66  2018-06-01      86.12245
-67  2018-07-01      86.24075
-68  2018-08-01      85.93538
-69  2018-09-01      85.98658
-70  2018-10-01      86.12846
-71  2018-11-01      86.34607
-72  2018-12-01      86.08275
-73  2019-01-01      86.40998
-74  2019-02-01      86.49876
-75  2019-03-01      86.73324
-76  2019-04-01      86.43843
-77  2019-05-01      86.31880
-78  2019-06-01      86.14403
-79  2019-07-01      86.19716
-80  2019-08-01      86.18990
-81  2019-09-01      86.46012
-82  2019-10-01      86.46501
-83  2019-11-01      86.72150
-84  2019-12-01      86.51808
-85  2020-01-01      86.58023
-86  2020-02-01      86.42862
-87  2020-03-01      85.81455
-88  2020-04-01      75.93630
-89  2020-05-01      77.91896
-90  2020-06-01      79.51488
-91  2020-07-01      79.82179
-92  2020-08-01      81.42801
-93  2020-09-01      81.51026
-94  2020-10-01      82.11515
-95  2020-11-01      81.96798
-96  2020-12-01      82.34913
-97  2021-01-01      82.60355
-98  2021-02-01      82.71985
-99  2021-03-01      82.80414
-100 2021-04-01      82.89659
-101 2021-05-01      82.95701
-102 2021-06-01      83.07933
-103 2021-07-01      83.86989
-104 2021-08-01      83.95999
-105 2021-09-01      84.15097
-106 2021-10-01      84.64204
-107 2021-11-01      84.99389
-108 2021-12-01      85.09827
-109 2022-01-01      85.02695
-110 2022-02-01      85.84881
-111 2022-03-01      85.98289
-112 2022-04-01      85.96567
-113 2022-05-01      86.00443
-114 2022-06-01      85.79113
-115 2022-07-01      85.85513
-116 2022-08-01      85.81974
-117 2022-09-01      86.14514
-118 2022-10-01      85.78746</code></pre>
+<pre><code>        Date emp_rate_male
+1 2013-01-01      82.58338
+2 2013-02-01      82.74719
+3 2013-03-01      82.66598
+4 2013-04-01      82.74347
+5 2013-05-01      83.05508
+6 2013-06-01      82.89206</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2529,22 +2349,17 @@ $ emp_rate_male &lt;dbl&gt; 82.58338, 82.74719, 82.66598, 82.74347, 83.055…</c
 <span>    values_to <span class='op'>=</span> <span class='st'>"emp_rate"</span></span>
 <span>  <span class='op'>)</span><span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Gender <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>Gender</span> <span class='op'>==</span> <span class='st'>"emp_rate_male"</span>, <span class='st'>"Male"</span>, <span class='st'>"Female"</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>emp_rate</span></span></code></pre>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>emp_rate</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 236 × 3
-   Date       Gender emp_rate
-   &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt;
- 1 2013-01-01 Male       82.6
- 2 2013-01-01 Female     68.9
- 3 2013-02-01 Male       82.7
- 4 2013-02-01 Female     69.0
- 5 2013-03-01 Male       82.7
- 6 2013-03-01 Female     69.0
- 7 2013-04-01 Male       82.7
- 8 2013-04-01 Female     69.1
- 9 2013-05-01 Male       83.1
-10 2013-05-01 Female     69.4
-# … with 226 more rows</code></pre>
+<pre><code># A tibble: 6 × 3
+  Date       Gender emp_rate
+  &lt;date&gt;     &lt;chr&gt;     &lt;dbl&gt;
+1 2013-01-01 Male       82.6
+2 2013-01-01 Female     68.9
+3 2013-02-01 Male       82.7
+4 2013-02-01 Female     69.0
+5 2013-03-01 Male       82.7
+6 2013-03-01 Female     69.0</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2562,19 +2377,15 @@ Columns: 2
 $ Date               &lt;date&gt; 2013-01-01, 2014-01-01, 2015-01-01, 2016…
 $ female_householder &lt;dbl&gt; 15469, 15420, 15544, 15622, 15572, 15423,…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>female_householder</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>female_householder</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date female_householder
-1  2013-01-01              15469
-2  2014-01-01              15420
-3  2015-01-01              15544
-4  2016-01-01              15622
-5  2017-01-01              15572
-6  2018-01-01              15423
-7  2019-01-01              15043
-8  2020-01-01              14832
-9  2021-01-01              15461
-10 2022-01-01              15618</code></pre>
+<pre><code>        Date female_householder
+1 2013-01-01              15469
+2 2014-01-01              15420
+3 2015-01-01              15544
+4 2016-01-01              15622
+5 2017-01-01              15572
+6 2018-01-01              15423</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2592,19 +2403,15 @@ Columns: 2
 $ Date             &lt;date&gt; 2013-01-01, 2014-01-01, 2015-01-01, 2016-0…
 $ male_householder &lt;dbl&gt; 6229, 6304, 6162, 6310, 6452, 6424, 6480, 6…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>male_householder</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>male_householder</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>         Date male_householder
-1  2013-01-01             6229
-2  2014-01-01             6304
-3  2015-01-01             6162
-4  2016-01-01             6310
-5  2017-01-01             6452
-6  2018-01-01             6424
-7  2019-01-01             6480
-8  2020-01-01             6503
-9  2021-01-01             6963
-10 2022-01-01             7212</code></pre>
+<pre><code>        Date male_householder
+1 2013-01-01             6229
+2 2014-01-01             6304
+3 2015-01-01             6162
+4 2016-01-01             6310
+5 2017-01-01             6452
+6 2018-01-01             6424</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2619,31 +2426,17 @@ $ male_householder &lt;dbl&gt; 6229, 6304, 6162, 6310, 6452, 6424, 6480, 6…</c
 <span>    values_to <span class='op'>=</span> <span class='st'>"house_holder"</span></span>
 <span>  <span class='op'>)</span><span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Gender <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>Gender</span> <span class='op'>==</span> <span class='st'>"male_householder"</span>, <span class='st'>"Male"</span>, <span class='st'>"Female"</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>house_holder</span></span></code></pre>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>house_holder</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 20 × 3
-   Date       Gender house_holder
-   &lt;date&gt;     &lt;chr&gt;         &lt;dbl&gt;
- 1 2013-01-01 Male           6229
- 2 2013-01-01 Female        15469
- 3 2014-01-01 Male           6304
- 4 2014-01-01 Female        15420
- 5 2015-01-01 Male           6162
- 6 2015-01-01 Female        15544
- 7 2016-01-01 Male           6310
- 8 2016-01-01 Female        15622
- 9 2017-01-01 Male           6452
-10 2017-01-01 Female        15572
-11 2018-01-01 Male           6424
-12 2018-01-01 Female        15423
-13 2019-01-01 Male           6480
-14 2019-01-01 Female        15043
-15 2020-01-01 Male           6503
-16 2020-01-01 Female        14832
-17 2021-01-01 Male           6963
-18 2021-01-01 Female        15461
-19 2022-01-01 Male           7212
-20 2022-01-01 Female        15618</code></pre>
+<pre><code># A tibble: 6 × 3
+  Date       Gender house_holder
+  &lt;date&gt;     &lt;chr&gt;         &lt;dbl&gt;
+1 2013-01-01 Male           6229
+2 2013-01-01 Female        15469
+3 2014-01-01 Male           6304
+4 2014-01-01 Female        15420
+5 2015-01-01 Male           6162
+6 2015-01-01 Female        15544</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2661,22 +2454,17 @@ $ Wage         &lt;int&gt; 860, 699, 863, 706, 855, 705, 865, 712, 865, 71…
 $ emp_rate     &lt;dbl&gt; 82.58338, 68.86507, 82.74347, 69.10345, 82.9516…
 $ house_holder &lt;dbl&gt; 6229, 15469, NA, NA, NA, NA, NA, NA, 6304, 1542…</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wages</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>wages</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 78 × 5
-   Date       Gender  Wage emp_rate house_holder
-   &lt;date&gt;     &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;        &lt;dbl&gt;
- 1 2013-01-01 Male     860     82.6         6229
- 2 2013-01-01 Female   699     68.9        15469
- 3 2013-04-01 Male     863     82.7           NA
- 4 2013-04-01 Female   706     69.1           NA
- 5 2013-07-01 Male     855     83.0           NA
- 6 2013-07-01 Female   705     69.5           NA
- 7 2013-10-01 Male     865     82.4           NA
- 8 2013-10-01 Female   712     69.1           NA
- 9 2014-01-01 Male     865     83.2         6304
-10 2014-01-01 Female   716     69.8        15420
-# … with 68 more rows</code></pre>
+<pre><code># A tibble: 6 × 5
+  Date       Gender  Wage emp_rate house_holder
+  &lt;date&gt;     &lt;chr&gt;  &lt;int&gt;    &lt;dbl&gt;        &lt;dbl&gt;
+1 2013-01-01 Male     860     82.6         6229
+2 2013-01-01 Female   699     68.9        15469
+3 2013-04-01 Male     863     82.7           NA
+4 2013-04-01 Female   706     69.1           NA
+5 2013-07-01 Male     855     83.0           NA
+6 2013-07-01 Female   705     69.5           NA</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2706,6 +2494,10 @@ Explanatory: Gender (factor)
   &lt;dbl&gt;
 1  174.</code></pre>
 </div>
+<p>On average, weekly earning by male is 174.33 dollars more than Female weekly earning.</p>
+<p>Hypothesis Testing:<br />
+Null Hypothesis: Wages of Male and Female are equal.<br />
+Alternate Hypothesis: Wages of Male is more than Female.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>null_dist_wage_diff</span> <span class='op'>&lt;-</span> <span class='va'>wages</span> <span class='op'>|&gt;</span></span>
@@ -2731,6 +2523,8 @@ Explanatory: Gender (factor)
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-42-1.png" width="624" /></p>
 </div>
+<p>The probability of observing a difference between male and female weekly wages as large as 174.33 dollars due to sampling variation alone in the null distribution is close to 0.
+Since this p_value is smaller than our significance level of 0.05. We reject the null hypothesis. We have enough evidence to say male weekly wakes is more than female weekly wages.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wages.multreg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Wage</span> <span class='op'>~</span>  <span class='va'>Gender</span> <span class='op'>+</span> <span class='va'>emp_rate</span> <span class='op'>+</span> <span class='va'>house_holder</span>, data <span class='op'>=</span> <span class='va'>wages</span><span class='op'>)</span> </span>
@@ -2841,7 +2635,8 @@ house_holder
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>wages.multreg</span>, gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>wages.multreg</span>, statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2866,7 +2661,14 @@ Model 1
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(1045.944)
+s.e. = 1045.944
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
 </td>
 </tr>
 <tr>
@@ -2881,7 +2683,14 @@ GenderMale
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(394.060)
+s.e. = 394.060
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.003
 </td>
 </tr>
 <tr>
@@ -2896,7 +2705,14 @@ emp_rate
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(8.275)
+s.e. = 8.275
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
 </td>
 </tr>
 <tr>
@@ -2908,10 +2724,17 @@ house_holder
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.046
+</td>
+</tr>
+<tr>
 <td style="text-align:left;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.046)
+p = &lt;0.001
 </td>
 </tr>
 <tr>
@@ -2941,7 +2764,14 @@ R2 Adj.
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Baseline for comparison is female worker.
+The coefficient of emp_rate is 35.242, which means there is an increase in the weekly wages by 35.242 dollars with a 1% increase in the employment rate, when other variables don’t change.</p>
+<p>The coefficient of house_holder is 0.190, which means there is an increase in the weekly wages by 0.190 dollars with a one-unit increase in Household(thousand households), when other variables don’t change.</p>
+<p>The estimated coefficient of emp_rate is statistically significant at the 0.05 level because the p-value is less than 0.05.
+The estimated coefficient of house_holder is statistically significant at the 0.05 level because the p-value is less than 0.05.<br />
+The estimated coefficient of GenderMale is statistically significant at the 0.05 level because the p-value is less than 0.05.</p>
+<p>Finally, I was able to successfully run two hypothesis tests. Two Multiple linear regression tests were done to find which independent variable is statistically significant. There can be other confounding variables which I might have not added to my data set. The results can be improved by adding more independent variables.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

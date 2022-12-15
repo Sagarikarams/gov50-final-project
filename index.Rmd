@@ -247,19 +247,22 @@ tidy(finance_data.multreg) |> knitr::kable(digits = 3)
 modelsummary::modelsummary(finance_data.multreg, statistic = c("s.e. = {std.error}",
                                          "p = {p.value}"), gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
-The coefficient of emp_rate is -0.663, which means there is a decrease in the Difference between CPI growth and ECI growth(outcome) by 0.663 points with a one-unit increase in employment rate, when other variables don’t change.
+The coefficient of emp_rate is -0.663, which means there is a decrease in the Difference between CPI growth and ECI growth(outcome) by 0.663 points with a 1% increase in employment rate, when other variables don’t change.
 
-The coefficient of gov_cur_expend is -0.002, which means there is a decrease in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit increase in Government Current Expenditures, when other variables don’t change.
+The coefficient of gov_cur_expend is -0.002, which means there is a decrease in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit(1 billion dollars) increase in Government Current Expenditures, when other variables don’t change.
 
-The coefficient of pce is 0.002, which means there is an increase in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit increase in Personal Consumption Expenditures, when other variables don’t change.
+The coefficient of pce is 0.002, which means there is an increase in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit(1 billion dollars) increase in Personal Consumption Expenditures, when other variables don’t change.
 
-The coefficient of corp_profit is 0.002, which means there is an increase in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit increase in Corporate Profits, when other variables don’t change.
+The coefficient of corp_profit is 0.002, which means there is an increase in the Difference between CPI growth and ECI growth(outcome) by 0.002 points with a one-unit(1 billion dollars) increase in Corporate Profits, when other variables don’t change.
 
 The estimated coefficient of emp_rate is statistically significant at the 0.05 level because the p-value 0.006, which is less than 0.05.
 The estimated coefficient of pce is statistically significant at the 0.05 level because the p-value is less than 0.05.  
 The estimated coefficient of gov_cur_expend	 is statistically significant at the 0.05 level because the p-value is less than 0.05.
 The estimated coefficient of corp_profit is not statistically significant at the 0.05 level because the p-value 0.381, which is more than 0.05.
 
+
+Now, lets start another interesting hypothesis.  
+Is gender wage gap real?
 ```{r}
 totalwage_weekly <- read.csv("data/LES1252881500Q.csv")
 
@@ -269,7 +272,7 @@ totalwage_weekly <- totalwage_weekly|>
             select(Date, tt_wk_wage)
 
 glimpse(totalwage_weekly)
-tail(totalwage_weekly)
+head(totalwage_weekly)
 ```
 ```{r}
 ggplot(totalwage_weekly, aes(x = Date, y = tt_wk_wage)) + geom_line() + labs(x = "Date", y = "Dollars",title = "Median weekly earnings over 10 years for ages 16 and above")
@@ -284,7 +287,7 @@ malewage_weekly <- malewage_weekly|>
             select(Date, male_wk_wage)
 
 glimpse(malewage_weekly)
-tail(malewage_weekly)
+head(malewage_weekly)
 ```
 ```{r}
 ggplot(malewage_weekly, aes(x = Date, y = male_wk_wage)) + geom_line()+ labs(x = "Date", y = "Dollars", title = "Median weekly earnings over 10 years for male of ages 16 and above")
@@ -299,7 +302,7 @@ femalewage_weekly <- femalewage_weekly|>
             select(Date, female_wk_wage)
 
 glimpse(femalewage_weekly)
-tail(femalewage_weekly)
+head(femalewage_weekly)
 ```
 
 ```{r}
@@ -311,7 +314,8 @@ wages <- totalwage_weekly |>
 
 wages <- wages |>
         inner_join(femalewage_weekly, by = 'Date')
-wages
+glimpse(wages)
+head(wages)
 ```
 
 ```{r}
@@ -338,7 +342,7 @@ wages <- wages|>
   )|> mutate(Gender = if_else(Gender == "male_wk_wage", "Male", "Female"))|>
   select(-tt_wk_wage)
 
-wages
+head(wages)
 ```
 
 
@@ -351,7 +355,7 @@ emp_rate_female <- emp_rate_female|>
             select(Date, emp_rate_female)
 
 glimpse(emp_rate_female)
-emp_rate_female
+head(emp_rate_female)
 ```
 
 ```{r}
@@ -363,7 +367,7 @@ emp_rate_male <- emp_rate_male|>
             select(Date, emp_rate_male)
 
 glimpse(emp_rate_male)
-emp_rate_male
+head(emp_rate_male)
 ```
 ```{r}
 emp_rate <- emp_rate_male|>
@@ -376,7 +380,7 @@ emp_rate <- emp_rate|>
     values_to = "emp_rate"
   )|> mutate(Gender = if_else(Gender == "emp_rate_male", "Male", "Female"))
 
-emp_rate
+head(emp_rate)
 ```
 
 
@@ -389,7 +393,7 @@ female_householder <- female_householder|>
             select(Date, female_householder)
 
 glimpse(female_householder)
-female_householder
+head(female_householder)
 
 ```
 
@@ -403,7 +407,7 @@ male_householder <- male_householder|>
             select(Date, male_householder)
 
 glimpse(male_householder)
-male_householder
+head(male_householder)
 ```
 
 ```{r}
@@ -418,7 +422,7 @@ house_holder <- house_holder|>
     values_to = "house_holder"
   )|> mutate(Gender = if_else(Gender == "male_householder", "Male", "Female"))
 
-house_holder
+head(house_holder)
 ```
 ```{r}
 wages <- left_join(wages,emp_rate, by = c('Date'='Date', 'Gender'='Gender'))
@@ -426,7 +430,7 @@ wages <- left_join(wages,emp_rate, by = c('Date'='Date', 'Gender'='Gender'))
 wages <-left_join(wages,house_holder, by = c('Date'='Date', 'Gender'='Gender'))
 
 glimpse(wages)
-wages
+head(wages)
 ```
 ```{r}
 ggplot(data = wages, mapping = aes(x=Gender, y =emp_rate)) +
@@ -446,8 +450,11 @@ est_ate <-  wages |>
       calculate(stat = "diff in means", order = c("Male", "Female"))
 est_ate
 ```
+On average, weekly earning by male is 174.33 dollars more than Female weekly earning.
 
-
+Hypothesis Testing:  
+Null Hypothesis: Wages of Male and Female are equal.  
+Alternate Hypothesis: Wages of Male is more than Female.
 
 ```{r}
 null_dist_wage_diff <- wages |>
@@ -461,12 +468,14 @@ get_p_value(obs_stat = est_ate, direction = "right")
 ate_pval
 ```
 
+
 ```{r}
 null_dist_wage_diff |>
 visualize() +
 shade_p_value(obs_stat = est_ate, direction = "right")
 ```
-
+The probability of observing a difference between male and female weekly wages as large as 174.33 dollars due to sampling variation alone in the null distribution is close to 0.
+Since this p_value is smaller than our significance level of 0.05. We reject the null hypothesis. We have enough evidence to say male weekly wakes is more than female weekly wages.
 
 ```{r}
 wages.multreg <- lm(Wage ~  Gender + emp_rate + house_holder, data = wages) 
@@ -476,8 +485,18 @@ tidy(wages.multreg) |> knitr::kable(digits = 3)
 ```
 
 ```{r}
-modelsummary::modelsummary(wages.multreg, gof_map = c("nobs", "r.squared", "adj.r.squared"))
+modelsummary::modelsummary(wages.multreg, statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),gof_map = c("nobs", "r.squared", "adj.r.squared"))
 
 ```
+Baseline for comparison is female worker. 
+The coefficient of emp_rate is 35.242, which means there is an increase in the weekly wages by 35.242 dollars with a 1% increase in the employment rate, when other variables don’t change.
+
+The coefficient of house_holder is 0.190, which means there is an increase in the weekly wages by 0.190 dollars with a one-unit increase in Household(thousand households), when other variables don’t change.
+
+The estimated coefficient of emp_rate is statistically significant at the 0.05 level because the p-value is less than 0.05.
+The estimated coefficient of house_holder is statistically significant at the 0.05 level because the p-value is less than 0.05.  
+The estimated coefficient of GenderMale	 is statistically significant at the 0.05 level because the p-value is less than 0.05.
 
 
+Finally, I was able to successfully run two hypothesis tests. Two Multiple linear regression tests were done to find which independent variable is statistically significant. There can be other confounding variables which I might have not added to my data set. The results can be improved by adding more independent variables.  
